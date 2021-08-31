@@ -1,11 +1,22 @@
+import React, { useRef } from 'react';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import './App.css';
 
 function App() {
+  const homeRef = useRef(null);
+  const teamRef = useRef(null);
+  const aboutRef = useRef(null);
+  const charityRef = useRef(null);
+  const VIPRef = useRef(null);
+
+  const homeScroll = () => homeRef.current.scrollIntoView();
+  const teamScroll = () => teamRef.current.scrollIntoView();
+  const aboutScroll = () => aboutRef.current.scrollIntoView();
+  const charityScroll = () => charityRef.current.scrollIntoView();
+  const VIPScroll = () => VIPRef.current.scrollIntoView();
+
   return (
-    <div className="App">
+    <div className="App" ref={homeRef}>
       <img className='top-drip' src={'./drip_top.png'}/>
       <img className='top-drip' src={'./drip_top.png'} style={{right: -10}} />
       <img className='top-splatter' src={'./splatter.png'} />
@@ -13,11 +24,11 @@ function App() {
         <img src={'./bear_head.png'} width={100} height={100} />
         <h2  style={{marginTop: 0}} className='blood-font'> THE BEAR CLTV.</h2>
         <div className='links-bar'>
-          <div className='header-link'>Home</div>
-          <div className='header-link'>About</div>
-          <div className='header-link'>Charity</div>
-          <div className='header-link'>VIP</div>
-          <div className='header-link'>Team</div>
+          <div className='header-link' onClick={()=> homeScroll }>Home</div>
+          <div className='header-link' onClick={()=> aboutScroll() }>About</div>
+          <div className='header-link' onClick={()=> charityScroll() }>Charity</div>
+          <div className='header-link' onClick={()=> VIPScroll() }>VIP</div>
+          <div className='header-link' onClick={() => teamScroll()}>Team</div>
         </div>
       </div>
         <div style={{marginLeft: '5%', marginRight: '5%'}}>
@@ -38,7 +49,7 @@ function App() {
               <img src={'./bear_gallery13.png'} className='first-gallery' />
           </div>
         </div>
-        <Container>
+        <Container ref={aboutRef}>
           <h1 className='blood-font' style={{textAlign: 'center', fontSize: '6vw', marginBottom:60, marginTop: 80}}>What is TBC?</h1>
           <p className='center-paragraph'>
             TBC is a eco-friendly hybrid collective of art lovers emerged in the NFT space, collectors realm, & of fashion enthusiasts. The Bear CLTV. is a collection of 10,0000 unique NFT's curated and carefuly
@@ -85,15 +96,15 @@ function App() {
             <img src={'./bear_gallery22.png'} className='second-gallery' />
             <img src={'./bear_gallery23.png'} className='second-gallery' />
           </div>
-        <Container>
+        <Container ref={charityRef}>
           <h1 className='header-3 blood-font'>Charitable + Carbon Neutral</h1>
           <div className='two-column-container'>
             <div className='longer-mid-paragraph left-aligned'>
               <p> For the initial launch, every TBC NFT minted (10,000) we will be planting a tree over various geographical locations. This not only allows the TBC project to be carbon neutral but it also helps our diverse planet and the eople who live on it . Thanks to our partners, by planting trees through TBC, you will be: </p>
-              <ul className='outside-list'>
+              <ul className='outside-list left-aligned'>
                 <li >Empowering Local women in Rwanda: Providing mentorship to local farmers through their women's cooperative, helping them revive their land andd irpove their quality of life.</li>
-                <li className='outside-list'>Improving food security: By planting both native trees and fruit trees, local farmers can ehabilitate their land wle creating a sustainable sourc eof food & income.</li>
-                <li className='outside-list'>Protecting biodiversity across multiple locations benefiting water supply across the globe as well as animal habitats & conservation.</li>
+                <li className='outside-list left-aligned'>Improving food security: By planting both native trees and fruit trees, local farmers can ehabilitate their land wle creating a sustainable sourc eof food & income.</li>
+                <li className='outside-list left-aligned'>Protecting biodiversity across multiple locations benefiting water supply across the globe as well as animal habitats & conservation.</li>
               </ul>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
@@ -103,7 +114,7 @@ function App() {
           </div>
         </Container>
         <Container>
-          <div className='two-column-container' style={{marginTop: 100}}>
+          <div ref={VIPRef} className='two-column-container' style={{marginTop: 100}}>
             <img src={'./bear_gallery23.png'} className='right-side-image'  width={'35%'} height={'30%'} />
             <div className='right-box'>
               <h1 className='header-4 blood-font'>TBC Utility</h1>
@@ -140,15 +151,15 @@ function App() {
           <img src={'./art_slide2.png'} className='right-side-image'  width={'45%'} height={'40%'} />
         </div>
       </Container>
-      <div style={{alignContent: 'center', paddingBottom: 100, marginTop: 100}}>
+      <div ref={teamRef} style={{alignContent: 'center', paddingBottom: 100, marginTop: 100}}>
         <h1 style={{textAlign: 'center', marginBottom: 100}} className='blood-font'> MEET THE TEAM</h1>
         <h2 style={{textAlign: 'center'}} className='coming-soon'>COMING SOON...</h2>
         <div className='team-container'>
           <div style={{marginRight: '10%', width: 550}}>
             <ul className='outside-list'>
-              <li style={{listStyleType: 'none', marginTop: 15}}><i class="small-padding fab fa-instagram"></i>@THEBEARCLTV</li>
-              <li style={{listStyleType: 'none', marginTop: 15}}><i class="small-padding fab fa-twitter"></i>@THEBEARCLTV</li>
-              <li style={{listStyleType: 'none', marginTop: 15}}><i class="small-padding fab fa-discord"></i>COMING SOON...</li>
+              <li style={{listStyleType: 'none', marginTop: 15}}><i className="small-padding fab fa-instagram"></i>@THEBEARCLTV</li>
+              <li style={{listStyleType: 'none', marginTop: 15}}><i className="small-padding fab fa-twitter"></i>@THEBEARCLTV</li>
+              <li style={{listStyleType: 'none', marginTop: 15}}><i className="small-padding fab fa-discord"></i>COMING SOON...</li>
             </ul>
             <div style={{marginLeft: '15%',textAlign: 'center', fontSize: 14, width: 175}} className='blood-font'>
               2021 THE BEAR CLTV LLC <br/>
