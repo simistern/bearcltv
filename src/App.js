@@ -37,7 +37,7 @@ function App() {
             <button onClick={() => alert('you just minted an NFT!')} className='coming-soon-button'>COMING SOON.</button>
           </div>
           <h1 className='bear-header blood-font'> THE BEAR CLTV.</h1>
-          <img src={'./bluebear.png'} className='first-bear-image' />
+          <img src={'./red_bear.png'} className='first-bear-image' />
           {/* <img src={'./splatter_2.png'} className='splash_splatter' /> */}
           <div className='bear-header-copy'>Exclusive </div>
           <p className='bear-header-copy'>Collectable NFT's that offer hybrid access to the TBC Hype brand + Much more. </p>
@@ -52,8 +52,8 @@ function App() {
         <Container ref={aboutRef}>
           <h1 className='blood-font' style={{textAlign: 'center', fontSize: '6vw', marginBottom:60, marginTop: 80}}>What is TBC?</h1>
           <p className='center-paragraph'>
-            TBC is a eco-friendly hybrid collective of art lovers emerged in the NFT space, collectors realm, & of fashion enthusiasts. The Bear CLTV. is a collection of 10,0000 unique NFT's curated and carefuly
-            crafted programatically with hundreds of variations, personality traits, and accessories. Moreover, the Bear CLTV. will becomea foundational clique within the blockchain itself. Though TBC is a NFT collectible project, TBC is bringing a diverse selection of utility.
+            TBC is a eco-friendly hybrid collective of art lovers emerged in the NFT space, collectors realm, & of fashion enthusiasts. The Bear CLTV. is a collection of 7,777 unique NFT's curated and carefully
+            crafted programatically with hundreds of variations, personality traits, and accessories. Moreover, the Bear CLTV. will become a foundational clique within the blockchain itself. Though TBC is a NFT collectible project, TBC is bringing a diverse selection of utility.
           </p>
         </Container>
         <div>
@@ -62,7 +62,7 @@ function App() {
             <div className='left-side-small-text-block'>
               <div className='quarter-text'>
                 <h4 className='small-text-block-title' >Exclusivity</h4>
-                <p  className='small-text-block'>The bear collective offers an exclusive 10,000 NFT collection that includes extreme rar's, special graphics, and other innovations not yet prominent in the NFT space.</p>
+                <p  className='small-text-block'>The bear collective offers an exclusive 7,777 NFT collection that includes extreme rares's, special graphics, and other innovations not yet prominent in the NFT space.</p>
               </div>
               <div className='quarter-text'>
                 <h4 className='small-text-block-title'>Tight-knit clique</h4>
@@ -78,47 +78,47 @@ function App() {
               <div>
                 <h4 className='small-text-block-title'>Rewards</h4>
                 <p className='small-text-block'>
-                  As the project continues to grow, so does the exclusive access and rewards given to our clique. We will be offfering consistent prizes in multiple forms, such as airdorps, sneak-peaks, merchandise, and much more. Our goal is to constantly give back to our clique that supports us through this evolution. 
+                  As the project continues to grow, so does the exclusive access and rewards given to our clique. We will be offering consistent prizes in multiple forms, such as airdrops, sneak-peaks, merchandise, and much more. Our goal is to constantly give back to our clique that supports us through this evolution. 
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div style={{marginTop: 200, marginLeft: '10%', marginRight: '10%'}}>
+        <div style={{marginTop: 200, marginLeft: '3%', marginRight: '3%'}}>
           <h1 className='blood-font' style={{textAlign: 'center', fontSize: '5vw', marginBottom: 80}}>Air-Drop's / CLTV. Membership</h1>
           <div style={{display: 'flex'}}>
             <p className='mid-paragraph'> Enjoy the luxury of getting in early! <br/> Collectors who mint & hold a certain amount of rare TBC NFT's from our first drop will be granted an exclusive CLTV. Membership Card which will gift them NFT's from future projects as well as projects in partnership.</p>
-            <img src={'./spacebear.png'} style={{marginLeft: '10%', marginTop: -60}} />
+            <img src={'./yellow_bear_transparent.png'} style={{marginTop: -60}} width={500} height={500} />
           </div>
         </div>
           <div className='gallery-container'>
-            <img src={'./bear_gallery21.png'} className='second-gallery' />
-            <img src={'./bear_gallery22.png'} className='second-gallery' />
-            <img src={'./bear_gallery23.png'} className='second-gallery' />
+            <img src={'./bear_gallery21.png'} className='second-gallery biggest' />
+            <img src={'./bear_gallery22.png'} className='second-gallery medium' />
+            <img src={'./bear_gallery23.png'} className='second-gallery smallest' />
           </div>
         <Container ref={charityRef}>
           <h1 className='header-3 blood-font'>Charitable + Carbon Neutral</h1>
           <div className='two-column-container'>
             <div className='longer-mid-paragraph left-aligned'>
-              <p> For the initial launch, every TBC NFT minted (10,000) we will be planting a tree over various geographical locations. This not only allows the TBC project to be carbon neutral but it also helps our diverse planet and the eople who live on it . Thanks to our partners, by planting trees through TBC, you will be: </p>
+              <p> For the initial launch, every TBC NFT minted (7,777) we will be planting a tree over various geographical locations. This not only allows the TBC project to be carbon neutral but it also helps our diverse planet and the eople who live on it . Thanks to our partners, by planting trees through TBC, you will be: </p>
               <ul className='outside-list left-aligned'>
-                <li >Empowering Local women in Rwanda: Providing mentorship to local farmers through their women's cooperative, helping them revive their land andd irpove their quality of life.</li>
-                <li className='outside-list left-aligned'>Improving food security: By planting both native trees and fruit trees, local farmers can ehabilitate their land wle creating a sustainable sourc eof food & income.</li>
-                <li className='outside-list left-aligned'>Protecting biodiversity across multiple locations benefiting water supply across the globe as well as animal habitats & conservation.</li>
+                <li >Empowering Local women in Rwanda: Providing mentorship to local farmers through their women's cooperative, helping them revive their land and improve their quality of life.</li>
+                <li>Improving food security: By planting both native trees and fruit trees, local farmers can rehabilitate their land while creating a sustainable sourc eof food & income.</li>
+                <li>Protecting biodiversity across multiple locations benefiting water supply across the globe as well as animal habitats & conservation.</li>
               </ul>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            <img src={'./bear_gallery23.png'} className='right-side-image'  width={'70%'} height={'90%'} />
+            <img src={'./shiny_blue.png'} className='right-side-image'  width={450} height={500} />
             <img src={'./otp.png'} className='right-side-image'  width={'35%'} style={{alignItems: 'center', justifyContent: 'center'}} />
             </div>
           </div>
         </Container>
         <Container>
-          <div ref={VIPRef} className='two-column-container' style={{marginTop: 100}}>
-            <img src={'./bear_gallery23.png'} className='right-side-image'  width={'35%'} height={'30%'} />
+          <div ref={VIPRef} className='two-column-container inner-container' style={{marginTop: 100}}>
+            <img src={'./hoody.png'} className='right-side-image'  width={'35%'} height={'30%'} />
             <div className='right-box'>
               <h1 className='header-4 blood-font'>TBC Utility</h1>
-              <p className='slightly-longer-mid-paragraph left-aligned'>TBC collectors who hold a TBC collectable NFT will have exclusive rights to shop the TBC brand which offers a diverse selection of original hype cut N' SEW as well as exclusive merch drops, TBC physical art + much more.</p>
+              <p className='slightly-longer-mid-paragraph-2 left-aligned'>TBC collectors who hold a TBC collectable NFT will have exclusive rights to shop the TBC brand which offers a diverse selection of original hype cut N' SEW as well as exclusive merch drops, TBC physical art + much more.</p>
             </div>
           </div>
         </Container>
@@ -139,9 +139,9 @@ function App() {
       <Container>
         <h1 className='header-5 blood-font'>Physical Art</h1>
         <div className='two-column-container' style={{marginTop: 50, marginBottom: 70}}>
-          <img src={'./art_slide.png'} className='right-side-image'  width={'45%'} height={'40%'} />
+          <img src={'./art_slide.png'} className='right-side-image'  width={'45%'} height={'40%'} style={{marginLeft: '5%'}} />
           <div className='right-box'>
-            <p style={{marginLeft: 150}} className='slightly-longer-mid-paragraph'>TBC Physical art is carefully crafted with the same design process as their NFT collection. The art is printed with high-quality fine art technology and coated with numerous slections of finishings such as resin on canvas, matte canvas, glossy metal, acrylic, + more.</p>
+            <p style={{marginLeft:70}} className='slightly-longer-mid-paragraph'>TBC Physical art is carefully crafted with the same design process as their NFT collection. The art is printed with high-quality fine art technology and coated with numerous slections of finishings such as resin on canvas, matte canvas, glossy metal, acrylic, + more.</p>
           </div>
         </div>
         <div className='two-column-container' style={{marginLeft: 100, marginRight: 100}}>
@@ -152,21 +152,24 @@ function App() {
         </div>
       </Container>
       <div ref={teamRef} style={{alignContent: 'center', paddingBottom: 100, marginTop: 100}}>
-        <h1 style={{textAlign: 'center', marginBottom: 100}} className='blood-font'> MEET THE TEAM</h1>
+        <h1 style={{textAlign: 'center', fontSize: 60, marginBottom: 100}} className='blood-font'> MEET THE TEAM</h1>
         <h2 style={{textAlign: 'center'}} className='coming-soon'>COMING SOON...</h2>
         <div className='team-container'>
-          <div style={{marginRight: '10%', width: 550}}>
-            <ul className='outside-list'>
-              <li style={{listStyleType: 'none', marginTop: 15}}><i className="small-padding fab fa-instagram"></i>@THEBEARCLTV</li>
-              <li style={{listStyleType: 'none', marginTop: 15}}><i className="small-padding fab fa-twitter"></i>@THEBEARCLTV</li>
-              <li style={{listStyleType: 'none', marginTop: 15}}><i className="small-padding fab fa-discord"></i>COMING SOON...</li>
-            </ul>
+          <div style={{marginRight: '10%'}}>
+            <div style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
+              <img src='./twitter.png' width={100} />
+              <div className='bear-link'><a href='https://www.twitter.com/thebearcltv' target="_blank" style={{color: 'black'}}>@THEBEARCLTV</a></div>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', marginTop: -30}}>
+              <img src='./discord.png' width={100} />
+              <div className='bear-link'>COMING SOON</div>
+            </div>
             <div style={{marginLeft: '15%',textAlign: 'center', fontSize: 14, width: 175}} className='blood-font'>
               2021 THE BEAR CLTV LLC <br/>
-              www.thebearcltv.com
+              <div style={{fontFamily: 'Fira Code', textTransform: 'uppercase'}}>www.thebearcltv.com</div>
             </div>
           </div>
-          <div style={{marginLeft: 10, marginTop: 25, width : '100%'}}>
+          <div style={{marginLeft: 10, marginTop: 35, width : '100%'}}>
             <h1 className='blood-font'>STAY CONNECTED</h1>
           </div>
         </div>
