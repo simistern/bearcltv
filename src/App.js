@@ -32,7 +32,8 @@ function App() {
         </div>
       </div>
         <div style={{marginLeft: '5%', marginRight: '5%'}}>
-          <div className='blood-font' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div>
+          <img src={'./red_bear.png'} className='first-bear-image-small' />
+          <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div>
           <div className='button-container'>
             <button onClick={() => alert('you just minted an NFT!')} className='coming-soon-button'>COMING SOON.</button>
           </div>
@@ -50,14 +51,14 @@ function App() {
           </div>
         </div>
         <Container ref={aboutRef}>
-          <h1 className='blood-font' style={{textAlign: 'center', fontSize: '6vw', marginBottom:60, marginTop: 80}}>What is TBC?</h1>
+          <h1 className='what-is blood-font'>What is TBC?</h1>
           <p className='center-paragraph'>
             TBC is a eco-friendly hybrid collective of art lovers emerged in the NFT space, collectors realm, & of fashion enthusiasts. The Bear CLTV. is a collection of 7,777 unique NFT's curated and carefully
             crafted programatically with hundreds of variations, personality traits, and accessories. Moreover, the Bear CLTV. will become a foundational clique within the blockchain itself. Though TBC is a NFT collectible project, TBC is bringing a diverse selection of utility.
           </p>
         </Container>
         <div>
-          <h1 style={{textAlign: 'center', marginBottom: -30, fontSize: '6vw'}} className='blood-font'>TBC NFT's</h1>
+          <h1 className='blood-font title' style={{marginTop: -40, marginBottom: 30}}>TBC NFT's</h1>
           <div className='four-square-container'>
             <div className='left-side-small-text-block'>
               <div className='quarter-text'>
@@ -84,11 +85,11 @@ function App() {
             </div>
           </div>
         </div>
-        <div style={{marginTop: 200, marginLeft: '3%', marginRight: '3%'}}>
-          <h1 className='blood-font' style={{textAlign: 'center', fontSize: '5vw', marginBottom: 80}}>Air-Drop's / CLTV. Membership</h1>
+        <div className='paragraph-container'>
+          <h1 className='blood-font title' >Air-Drop's / CLTV. Membership</h1>
           <div style={{display: 'flex'}}>
             <p className='mid-paragraph'> Enjoy the luxury of getting in early! <br/> Collectors who mint & hold a certain amount of rare TBC NFT's from our first drop will be granted an exclusive CLTV. Membership Card which will gift them NFT's from future projects as well as projects in partnership.</p>
-            <img src={'./yellow_bear_transparent.png'} style={{marginTop: -60}} width={500} height={500} />
+            <img src={'./yellow_bear_transparent.png'} className='yellow_bear_pic' />
           </div>
         </div>
           <div className='gallery-container'>
@@ -131,7 +132,7 @@ function App() {
         <div className='three-column' style={{marginTop: 100}}>
           <img src={'./milky_bear.png'} height={'30%'} width={'30%'} />
           <div>
-            <p style={{width: 160, lineHeight: 1.3, fontSize: '14px'}} className='paragraph-text'>The TBC Devil Trucker Hat features a rare fire TBC collectible NFT image sitting on the forefront of the face along with the iconic The Bear CLTV. text above. Below lays TBC printed on the visor of the hat as a minimalistic aesthetic.</p>
+            <p className='paragraph-text'>The TBC Devil Trucker Hat features a rare fire TBC collectible NFT image sitting on the forefront of the face along with the iconic The Bear CLTV. text above. Below lays TBC printed on the visor of the hat as a minimalistic aesthetic.</p>
           </div>
           <img src={'./devil_hat.png'} style={{marginLeft: 10}} width={'50%'} height={'50%'} />
         </div>
@@ -141,10 +142,10 @@ function App() {
         <div className='two-column-container' style={{marginTop: 50, marginBottom: 70}}>
           <img src={'./art_slide.png'} className='right-side-image'  width={'45%'} height={'40%'} style={{marginLeft: '5%'}} />
           <div className='right-box'>
-            <p style={{marginLeft:70}} className='slightly-longer-mid-paragraph'>TBC Physical art is carefully crafted with the same design process as their NFT collection. The art is printed with high-quality fine art technology and coated with numerous slections of finishings such as resin on canvas, matte canvas, glossy metal, acrylic, + more.</p>
+            <p className='slightly-longer-mid-paragraph3'>TBC Physical art is carefully crafted with the same design process as their NFT collection. The art is printed with high-quality fine art technology and coated with numerous slections of finishings such as resin on canvas, matte canvas, glossy metal, acrylic, + more.</p>
           </div>
         </div>
-        <div className='two-column-container' style={{marginLeft: 100, marginRight: 100}}>
+        <div className='two-column-container margin-call'>
           <div className='right-box'>
             <p className='slightly-longer-mid-paragraph left-aligned'>Collectors who mint their TBC NFT(S) will have exclusive access to order a 1 of 1 piece of physical art, the same of that TBC NFT they minted. Minters will have the option to choose from a variety of art finishes, coats and frames.</p>
           </div>
@@ -152,7 +153,7 @@ function App() {
         </div>
       </Container>
       <div ref={teamRef} style={{alignContent: 'center', paddingBottom: 100, marginTop: 100}}>
-        <h1 style={{textAlign: 'center', fontSize: 60, marginBottom: 100}} className='blood-font'> MEET THE TEAM</h1>
+        <h1 className='blood-font meet-team'> MEET THE TEAM</h1>
         <h2 style={{textAlign: 'center'}} className='coming-soon'>COMING SOON...</h2>
         <div className='team-container'>
           <div style={{marginRight: '10%'}}>
@@ -170,7 +171,7 @@ function App() {
             </div>
           </div>
           <div style={{marginLeft: 10, marginTop: 35, width : '100%'}}>
-            <h1 className='blood-font'>STAY CONNECTED</h1>
+            <h1 className='blood-font connected-title'>STAY CONNECTED</h1>
           </div>
         </div>
       </div>

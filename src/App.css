@@ -2,7 +2,6 @@
   background: url('./images/bear_background.png');
   background-repeat: repeat;
   width: 100%;
-
  }
 
  .first-bear-image{ 
@@ -148,6 +147,11 @@
   line-height: 1.1;
 }
 
+
+.first-bear-image-small{
+  display: none;
+}
+
 .top-drip{ 
   position: absolute;
   width: 30%;
@@ -167,14 +171,29 @@
 }
 
 .slightly-longer-mid-paragraph{
-  width: 60%;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: 1.5px;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.meet-team{
+  text-align: center;
+  font-size: 60px;
+  margin-bottom: 100px;
+}
+
+.slightly-longer-mid-paragraph3{
+  width: 70%;
   font-size: 20px;
   margin-top: 40px;
   font-weight: 100;
   letter-spacing: 1.5px;
-  margin-left: 5%;
   text-align: center;
   line-height: 1.1;
+  margin-left:70px;
 }
 
 .slightly-longer-mid-paragraph-2{
@@ -220,6 +239,9 @@
   font-weight: 100;
   letter-spacing: 1.5px;
   font-family: 'Major Mono Display', monospace;
+  width: 160px;
+  line-height: 1.3;
+  font-size: 14px;
 }
 
 .header-4{ 
@@ -331,4 +353,476 @@
   url("./fonts/Charu_Chandan_BloodDrip_Unicode-Regular.ttf") format("truetype"),
   url("./fonts/Charu_Chandan_BloodDrip_Unicode-Regular.svg#CharuChandanBloodDripUnicode") format("svg");
   font-weight:normal;font-style:normal;
+}
+
+.yellow_bear_pic{
+  margin-top: -30px;
+  width:500px;
+  height:500px;
+}
+
+.what-is{
+  text-align: center;
+  font-size: 6vw;
+  margin-bottom:60px;
+  margin-top: 80px;
+}
+
+.title{ 
+  text-align: center;
+  margin-bottom: -30px;
+  font-size: 6vw;
+}
+
+.paragraph-container{
+  margin-top: 200;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.margin-call{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+/* -------------------- Mobile -------------------- */
+/* -------------------- Mobile -------------------- */
+/* -------------------- Mobile -------------------- */
+
+@media only screen and (max-width: 600px) {
+
+  .App{
+    background: url('./images/bear_background.png');
+    background-repeat: repeat;
+    width: 100%;
+   }
+
+   .title{ 
+    text-align: center;
+    font-size: 40px;
+  }
+
+  .connected-title{
+    /* font-size: 14px; */
+    display: none;
+  }
+
+   .yellow_bear_pic{
+     display: none;
+  }
+
+  .paragraph-container{
+    margin-top: 200px;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+  }
+
+  .first-bear-image{ 
+    display: none;
+  }
+
+  .what-is{
+    text-align: center;
+    font-size: 45px;
+    margin-bottom:60px;
+    margin-top: 80px;
+  }
+
+  .banner{ 
+    display: flex;
+    align-items: center;
+    padding-top: 25px;
+    height: 250px;
+    flex-direction: column;
+  }
+  .t-shirt-pic{ 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .links-bar{ 
+    display: flex;
+    flex-direction: row;
+    margin-top: -10px;
+    text-transform: uppercase;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .header-link{
+    font-family: 'Major Mono Display', monospace;
+    text-align: center;
+    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+  
+  .bear-header{ 
+    font-family: 'Charu_Chandan_BloodDrip_Unicode-Regular';
+    src: local('Charu_Chandan_BloodDrip_Unicode-Regular'), url(./fonts/Charu_Chandan_BloodDrip_Unicode-Regular.ttf) format('ttf');
+    font-family: 'Charu Chandan BloodDrip Regular';
+    src: local('Charu_Chandan_Blood_Drip_Regular'), url(./fonts/Charu_Chandan_Blood_Drip-Regular.ttf) format('ttf');
+    color: 'black';
+    font-size: 6vw;
+    margin-top: 50px;
+    display: inline-block;
+    text-align: center;
+    align-self: center;
+    width: 100%;
+    align-content: center;
+  }
+  
+  
+  .bear-header-copy{
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 0px;
+    width: 100%;
+    font-family: 'Major Mono Display', monospace;
+  }
+  
+  .first-image-gallery {
+    /* width: 100%; */
+    margin-top: 40px;
+    /* display: flex; */
+    /* justify-content: space-evenly; */
+  }
+  
+  .first-gallery { 
+    display: inline-block;
+    /* align-items: center;
+    align-content: center; */
+    width: 32%;
+  }
+  
+
+
+  .center-paragraph{
+    font-family: 'Major Mono Display', monospace;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 14vh;
+  }
+  
+  .small-text-block{ 
+    text-align: center;
+  }
+  
+  .small-text-block-title{ 
+    text-align: center;
+  }
+  
+  .small-text-block-bear{
+    /* align-content: center;
+    margin-top: 60px;
+    width: 300px;
+    height: 450px;
+    background-color: red; */
+    display: none;
+  }
+  
+  .four-square-container{
+    margin-left: 50px;
+    margin-right: 50px;
+    /* height:600px; */
+    display: flex;
+    margin-top: 200px;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: 'Major Mono Display', monospace;
+  }
+  
+  .left-side-small-text-block{
+    display: flex;
+    flex-direction: column;
+    /* float: left; */
+    width: 100%;
+  }
+
+  .margin-call{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .right-side-small-text-block{
+    display: flex;
+    flex-direction: column;
+    /* float: right; */
+    width: 100%;
+  }
+  
+  .mid-paragraph{
+    width: 100%;
+    font-family: 'Major Mono Display', monospace;
+    font-size: 16px;
+    margin-top: 100px;
+    font-weight: 100;
+    text-align: center;
+    line-height: 1.1;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .longer-mid-paragraph{ 
+    width: 100%;
+    font-size: 16px;
+    margin-top: 40px;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+    margin-left: 5%;
+    text-align: center;
+    line-height: 1.1;
+  }
+  
+  .top-drip{ 
+    position: absolute;
+    width: 30%;
+    height: 20%;
+  }
+  
+  .top-splatter{
+    position: absolute;
+    /* width: 50%; */
+    height: 30%;
+  }
+  
+  .splash_splatter{
+    position: absolute;
+    top: 120px;
+    z-index: 0;
+  }
+  
+  .slightly-longer-mid-paragraph{
+    width: 100%;
+    font-size: 20px;
+    margin-top: 40px;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .slightly-longer-mid-paragraph3{
+    width: 100%;
+    font-size: 18px;
+    margin-top: 40px;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+    text-align: center;
+    line-height: 1.1;
+    margin-top: -10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+
+  
+  .slightly-longer-mid-paragraph-2{
+    width: 85%;
+    font-size: 20px;
+    margin-top: 40px;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+    margin-left: 5%;
+    text-align: center;
+    line-height: 1.1;
+  }
+  
+  .bear-link{
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    font-family: 'Fira Code', monospace;
+  }
+  
+  .three-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+
+  }
+  
+  .header-3{
+    margin-top: 80px;
+    /* margin-left: 5%; */
+    margin-bottom: -30px;
+    letter-spacing: 3px;
+    font-weight: 100;
+    text-align: center;
+  }
+  
+  .blood-font{
+    font-family:"Charu Chandan BloodDrip Unicode";
+    font-weight: 100;
+  }
+  
+  .paragraph-text{
+    font-size: smaller;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+    font-family: 'Major Mono Display', monospace;
+    width: 100%;
+    line-height: 1.3;
+    font-size: 14px;
+  }
+  
+  .header-4{ 
+    margin-top: -50px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-size: 60px;
+    margin-bottom: -30px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .coming-soon{ 
+    font-family: 'Major Mono Display', monospace;
+  }
+  
+  .coming-soon2{
+    font-family: 'Fira Code', monospace;
+  }
+  
+  .outside-list {
+    list-style-position: outside;
+    margin-left: -10px;
+  }
+  .left-aligned{
+    text-align: center;
+  }
+  .header-5{ 
+    text-align: center;
+    margin-bottom: -30px;
+    font-size: 54px;
+  }
+  
+  .button-container{
+    display: flex;
+    width: 100%;
+  }
+  
+  .coming-soon-button{
+    display: inline-block;
+    font-family: 'Fira Code', monospace;
+    margin-left: auto;
+    margin-right: auto;
+    background:    #000000;
+    border-radius: 31px;
+    box-shadow:    5px 5px 10px 0px rgba(0,0,0,0.76);
+    padding:       15px 25px;
+    color:         #ffffff;
+    text-align:    center;
+  }
+  
+  .two-column-container{ 
+    display: flex;
+    flex-direction: column;
+    font-family: 'Major Mono Display', monospace;
+    align-items: center;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+  }
+  
+  .inner-container{
+    width: 100%;
+    align-items: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+    /* background-color: red; */
+  }
+  
+  .right-box{ 
+    width: 100%;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    /* margin-left: 100px; */
+  }
+  
+  .right-side-image{ 
+    display: none;
+  }
+  
+  
+  .gallery-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+  }
+  
+  .second-gallery {
+    display: inline-block;
+    margin-left: -30px;
+    margin-right: -30px;
+    margin-top: 30px;
+  }
+  
+  .biggest{ 
+    width: 55%;
+  }
+  .medium { 
+    width:45%;
+  }
+  .smallest{ 
+    width:40%;
+  }
+  
+  .team-container{ 
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 50px;
+  }
+  
+  .small-padding{
+    padding-right: 10px;
+  }
+
+  .meet-team{
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 100px;
+  }
+
+  .small-tbc{
+    width: 100%;
+    text-align: center;
+  }
+
+  .first-bear-image-small{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    margin-top: -50px;
+    margin-bottom: -50px;
+  }
+
+  body{ 
+    width:101%;
+  }
 }
