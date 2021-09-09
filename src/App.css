@@ -809,6 +809,10 @@
     text-align: center;
   }
 
+.airdrop{
+  margin-top: 300px;
+}
+
   .first-bear-image-small{
     display: flex;
     align-items: center;

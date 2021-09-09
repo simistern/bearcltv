@@ -86,7 +86,7 @@ function App() {
           </div>
         </div>
         <div className='paragraph-container'>
-          <h1 className='blood-font title' >Air-Drop's / CLTV. Membership</h1>
+          <h1 className='blood-font title airdrop' >Air-Drop's / CLTV. Membership</h1>
           <div style={{display: 'flex'}}>
             <p className='mid-paragraph'> Enjoy the luxury of getting in early! <br/> Collectors who mint & hold a certain amount of rare TBC NFT's from our first drop will be granted an exclusive CLTV. Membership Card which will gift them NFT's from future projects as well as projects in partnership.</p>
             <img src={'./yellow_bear_transparent.png'} className='yellow_bear_pic' />
