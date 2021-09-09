@@ -35,7 +35,7 @@ function App() {
           <img src={'./red_bear.png'} className='first-bear-image-small' />
           <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div>
           <div className='button-container'>
-            <button onClick={() => alert('you just minted an NFT!')} className='coming-soon-button'>COMING SOON.</button>
+            <button className='coming-soon-button'>COMING SOON.</button>
           </div>
           <h1 className='bear-header blood-font'> THE BEAR CLTV.</h1>
           <img src={'./red_bear.png'} className='first-bear-image' />
