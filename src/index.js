@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Web3Provider from 'web3-react';
+import { connectors } from './Connectors';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Web3Provider
+      connectors={connectors}
+      libraryName={'ethers.js'}
+    >
+      <App />
+    </Web3Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

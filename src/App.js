@@ -1,13 +1,34 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Container from '@material-ui/core/Container';
 import './App.css';
+import { useWeb3Context } from 'web3-react';
 
-function App() {
+const App = () => {
   const homeRef = useRef(null);
   const teamRef = useRef(null);
   const aboutRef = useRef(null);
   const charityRef = useRef(null);
   const VIPRef = useRef(null);
+
+  const context = useWeb3Context();
+  console.log('web3: ', context);
+  useEffect(() => {
+    context.setFirstValidConnector(['MetaMask'])
+  }, [])
+
+  if (!context.active && !context.error) {
+    console.log('loading');
+    // loading
+    // return ...
+  } else if (context.error) {
+    console.log('error ', context.error);
+    //error
+    // return ...
+  } else {
+    console.log('success');
+    // success
+    // return ...
+  }
 
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
@@ -31,9 +52,9 @@ function App() {
           <div className='header-link' onClick={() => teamScroll()}>Team</div>
         </div>
       </div>
-        <div style={{marginLeft: '5%', marginRight: '5%'}}>
+        <div style={{marginTop: 125, marginLeft: '5%', marginRight: '5%'}}>
           <img src={'./red_bear.png'} className='first-bear-image-small' />
-          <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div>
+          {/* <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div> */}
           <div className='button-container'>
             <button className='coming-soon-button'>COMING SOON.</button>
           </div>
@@ -152,6 +173,39 @@ function App() {
           <img src={'./art_slide2.png'} className='right-side-image'  width={'45%'} height={'40%'} />
         </div>
       </Container>
+      <div className='bottom-meet-team-container'>
+        <div className='blood-font title roadmap'>ROADMAP</div>
+        <div className='four-square-container'>
+          <div className='left-side-small-text-block'>
+            <div className='quarter-text'>
+              <h4 className='small-text-block-title' >Step No.1</h4>
+              <h4 className='small-text-block-title' >out from Hibernation</h4>
+              <p  className='small-text-block'>TBC & DNA Labs have established their initial marketing push, driving collectors, art enthusiasts, & fashion lovers from all around the glob to our main discord server generating the TBC COmmunity, & building the hype before the drop. TBC will also give away two of the first Physical Prints on Acrylic + more.</p>
+            </div>
+            <div className='quarter-text'>
+              <h4 className='small-text-block-title'>Step No.2</h4>
+              <h4 className='small-text-block-title'>lets mint</h4>
+              <p className='small-text-block'>The Bear CLTV Collection is sold out and the hype forest is seeded. The TBC hype brand is in full force ready to launch the online shop for all collectors to purchase exclusive clothing drops. Physical mint to art will follow.</p>
+            </div>
+          </div>
+          <img className='small-text-block-bear' src={'./spacebear.png'} />
+          <div className='right-side-small-text-block'>
+            <div>
+              <h4 className='small-text-block-title'>Step No.3</h4>
+              <h4 className='small-text-block-title'>brand establishing</h4>
+              <p className='small-text-block'>TBC has an established but it doesn't stop there...The team will begin raining endorsements, partnerships, and collaborations. By this time, the physical mint to art will be up in full effect.</p>
+            </div>
+            <div>
+              <h4 className='small-text-block-title'>Step No.4</h4>
+              <h4 className='small-text-block-title'>the hype is real</h4>
+              <p className='small-text-block'>
+                7777 trees have been planted, the CLTV merch shop is open for collectors, the NFT to phsyical art platform is activated & partnerships/endorsements are a-go. DNA Labs will give the community a 'sneak peak' off their next drop which TBC holders holding select TBC bears will be air dropped. 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div ref={teamRef} style={{alignContent: 'center', paddingBottom: 100, marginTop: 100}}>
         <h1 className='blood-font meet-team'> MEET THE TEAM</h1>
         <h2 style={{textAlign: 'center'}} className='coming-soon'>COMING SOON...</h2>
