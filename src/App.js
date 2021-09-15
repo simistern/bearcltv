@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Container from '@material-ui/core/Container';
+import Modal from '@material-ui/core/Modal';
+
 import './App.css';
 import { useWeb3Context } from 'web3-react';
 import Web3 from 'web3';
-// import contract from './contract';
+import contract from './contract';
 import Web3EthContract from 'web3-eth-contract';
 // let web3 = new Web3('ws://localhost:8546');
 
@@ -15,6 +17,7 @@ const abi = [
 ];
 
 const App = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [account, setAccount] = useState();
   const homeRef = useRef(null);
   const teamRef = useRef(null);
@@ -24,14 +27,18 @@ const App = () => {
   const contract = new Web3EthContract(abi, address);
   const context = useWeb3Context();
 
+
+  // This seems to be working fine, I can click the button and get metamask to connect the wallet
   const onMint = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     setAccount(accounts[0]);
     console.log('account: ',accounts, account);
   }
 
-  // 0xe1e74d58349cb024be236e951b07ca4b18cae7c2452c665d3c77ac305c78b00c
 
+  // NO idea whats going on here, trying to use metamask to mint, it says that it is calling mint
+  // but I have no idea why, or why the price is zero, or what the data is, or value is, or what
+  // happens next, or how to poll the transaction for success or not 
   const onPurchase = async () => {
     const transactionParameters = {
       gasPrice: '0x09184e72a000',
@@ -46,8 +53,11 @@ const App = () => {
       params: [transactionParameters],
     });
     console.log('whats tx ', txHash);
+    setModalIsOpen(true);
   }
 
+
+  // Testing out the contract call here
   useEffect(() => {
     const getPrices = async () => {
       let res = await contract.methods.NFT_PRICE().call();
@@ -61,8 +71,22 @@ const App = () => {
   const charityScroll = () => charityRef.current.scrollIntoView();
   const VIPScroll = () => VIPRef.current.scrollIntoView();
 
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  }
+
   return (
     <div className="App" ref={homeRef}>
+      <Modal
+        disableEnforceFocus
+        open={modalIsOpen}
+        onClose={handleCloseModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className='minting-bear-modal'
+      >
+        <img src={'./minting_bear.gif'} className='minting-bear-image' />
+      </Modal>
       <img className='top-drip' src={'./drip_top.png'}/>
       <img className='top-drip' src={'./drip_top.png'} style={{right: -10}} />
       <img className='top-splatter' src={'./splatter.png'} />
