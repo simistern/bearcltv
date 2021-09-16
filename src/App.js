@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
-
-import './App.css';
-import { useWeb3Context } from 'web3-react';
-import Web3 from 'web3';
-import contract from './contract';
 import Web3EthContract from 'web3-eth-contract';
-// let web3 = new Web3('ws://localhost:8546');
+import './App.css';
+import Web3 from 'web3';
+window.ethereum.enable();
 
 const PROVIDER_URL = 'wss://rinkeby.infura.io/ws/v3/3f30c3d9a4794b6bac600ac401675dc8';
-const web3 = new Web3(PROVIDER_URL);
+const web3 = new Web3(Web3.givenProvider || PROVIDER_URL);
+// const web3 = new Web3(PROVIDER_URL);
 
+console.log('web3 util ', web3.utils )
 Web3EthContract.setProvider(PROVIDER_URL);
 const address = '0xeAf59aCF00435857d4D0e26E2b48948B86A8A8ca';
 const abi = [
@@ -22,6 +21,7 @@ const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
   const [account, setAccount] = useState();
+  const [price, setPrice] = useState(50000000000000000);
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const homeRef = useRef(null);
   const teamRef = useRef(null);
@@ -29,7 +29,7 @@ const App = () => {
   const charityRef = useRef(null);
   const VIPRef = useRef(null);
   const contract = new Web3EthContract(abi, address);
-  const context = useWeb3Context()
+  
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
   const aboutScroll = () => aboutRef.current.scrollIntoView();
@@ -51,7 +51,8 @@ const App = () => {
         gas: '0x76c0', // 30400
         gasPrice: '0x9184e72a000', 
       });
-      console.log('NFT PRICE: ', res);
+      console.log('gas price: ', res)
+      setPrice(res);
     }
     getPrices();
   }, []);
@@ -63,18 +64,12 @@ const App = () => {
   }
 
   const onPurchase = async () => {
-    // setSupplyModalIsOpen(true);
-    console.log('web3 ', web3);
-    // web3.utils.randomHex(32);
     let res = await contract.methods.mint(1).call({
-      gas: '40000', // 30400
-      // nonce: web3.utils.toHex(0),
-      to: '0xeAf59aCF00435857d4D0e26E2b48948B86A8A8ca',
+      gas: 210000, // 30400
       from: '0x010bc28dE2E080E233cA98Bc2D03B22D5CA8eD41',
-      // chainId: networkId,
-      value: 50000000000000000,
+      value: price,
       gasLimit:210000,
-      gasPrice: 40000,
+      gasPrice: 210000,
     });
     console.log('whats res ', res);
   }
@@ -124,7 +119,7 @@ const App = () => {
           {/* <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div> */}
           <div className='button-container'>
             <button onClick={() => onMint()} className='coming-soon-button'>SIGN ON.</button>
-            <button onClick={() => onPurchase()} className='coming-soon-button'>BUY THE THING.</button>
+            <button onClick={() => setSupplyModalIsOpen(true)} className='coming-soon-button'>BUY THE THING.</button>
           </div>
           <h1 className='bear-header blood-font'> THE BEAR CLTV.</h1>
           <img src={'./red_bear.png'} className='first-bear-image' />
