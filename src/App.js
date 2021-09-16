@@ -10,69 +10,102 @@ import Web3EthContract from 'web3-eth-contract';
 // let web3 = new Web3('ws://localhost:8546');
 
 const PROVIDER_URL = 'wss://rinkeby.infura.io/ws/v3/3f30c3d9a4794b6bac600ac401675dc8';
-Web3EthContract.setProvider(PROVIDER_URL);
+const web3 = new Web3(window.web3.currentProvider);
+
+Web3EthContract.setProvider(window.web3.currentProvider);
 const address = '0xeAf59aCF00435857d4D0e26E2b48948B86A8A8ca';
 const abi = [
  {"inputs":[{"internalType":"string","name":"name_","type":"string"},{"internalType":"string","name":"symbol_","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"},{"internalType":"uint256","name":"maxPurchase","type":"uint256"},{"internalType":"uint256","name":"maxSupply_","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"MAX_NFT_PURCHASE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"NFT_PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"calcStartingIndex","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"emergencySetStartingIndexBlock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"flipSaleState","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"numberOfTokensMax5","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"num","type":"uint256"}],"name":"reserveTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"saleIsActive","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"baseURI_","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"startingIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"startingIndexBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}
 ];
 
 const App = () => {
+
+  const componentWillMount = async () => {
+   await this.loadWeb3()
+   await this.loadBlockchainData()
+ }
+
+const loadBlockchainData = async () => {
+   const web3 = window.web3
+
+   const accounts = await web3.eth.getAccounts()
+   this.setState({ account: accounts[0] })
+
+   const networkId = await web3.eth.net.getId()
+   this.setState({ loading: false })
+
+ }
+
+ const loadWeb3 = async () => {
+  if (window.ethereum) {
+    window.web3 = new Web3(window.ethereum)
+    await window.ethereum.enable()
+  }
+  else if (window.web3) {
+    window.web3 = new Web3(window.web3.currentProvider)
+  }
+  else {
+    window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+  }
+}
+
+
+
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
   const [account, setAccount] = useState();
+  const [purchaseAmount, setPurchaseAmount] = useState(1);
   const homeRef = useRef(null);
   const teamRef = useRef(null);
   const aboutRef = useRef(null);
   const charityRef = useRef(null);
   const VIPRef = useRef(null);
   const contract = new Web3EthContract(abi, address);
-  const context = useWeb3Context();
-
-
-  // This seems to be working fine, I can click the button and get metamask to connect the wallet
-  const onMint = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    setAccount(accounts[0]);
-    console.log('account: ',accounts, account);
-  }
-
-
-  // NO idea whats going on here, trying to use metamask to mint, it says that it is calling mint
-  // but I have no idea why, or why the price is zero, or what the data is, or value is, or what
-  // happens next, or how to poll the transaction for success or not 
-  const onPurchase = async () => {
-    const transactionParameters = {
-      gasPrice: '0x09184e72a000',
-      gas: '0x2710',
-      to: '0xd46e8dd67c5d32be8058bb8eb970870f07244567',
-      from: '0x010bc28dE2E080E233cA98Bc2D03B22D5CA8eD41',
-      value: '0x9184e72a',
-      data: '0xa0712d680000000000000000000000000000000000000000000000000000000000000001',
-    };
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [transactionParameters],
-    });
-    console.log('whats tx ', txHash);
-    setModalIsOpen(true);
-  }
-
-
-  // Testing out the contract call here
-  useEffect(() => {
-    const getPrices = async () => {
-      let res = await contract.methods.NFT_PRICE().call();
-    }
-    getPrices();
-  }, []);
-
+  const context = useWeb3Context()
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
   const aboutScroll = () => aboutRef.current.scrollIntoView();
   const charityScroll = () => charityRef.current.scrollIntoView();
   const VIPScroll = () => VIPRef.current.scrollIntoView();
 
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
+  const handleCloseModal = () => { setModalIsOpen(false); }
+  const handleSupplyCloseModal = () => { setSupplyModalIsOpen(false);}
+
+  const validatePurchaseAmount = (e) => {
+    if(e < 6){
+      setPurchaseAmount(e);
+    }
+  }
+  // Testing out the contract call here
+  useEffect(() => {
+    const getPrices = async () => {
+      let res = await contract.methods.NFT_PRICE().call({
+        gas: '0x76c0', // 30400
+        gasPrice: '0x9184e72a000',
+      });
+      console.log('NFT PRICE: ', res);
+    }
+    getPrices();
+  }, []);
+
+  const onMint = async () => {
+    // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    // setAccount(accounts[0]);
+    // console.log('account: ',accounts, account);
+  }
+
+  const onPurchase = async () => {
+    // setSupplyModalIsOpen(true);
+    console.log('web3 ', web3);
+    // web3.utils.randomHex(32);
+    let res = await contract.methods.mint(1).send({
+      // nonce: web3.utils.toHex(0),
+      from: '0x12dA43c8BFdBE2454954191C8aB4bB2a0f8Ca3Cd',
+      numberOfTokensMax5: 1,
+      value:  50000000000000000
+    });
+    console.log('whats res ', res);
   }
 
   return (
@@ -86,6 +119,20 @@ const App = () => {
         className='minting-bear-modal'
       >
         <img src={'./minting_bear.gif'} className='minting-bear-image' />
+      </Modal>
+      <Modal
+        disableEnforceFocus
+        open={supplyModalIsOpen}
+        onClose={handleSupplyCloseModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className='minting-bear-modal supply'
+      >
+        <div className='supply-container'>
+          <h1 className='blood-font'>How many bears do you want to mint?</h1>
+          <input type='number' className='mint-input' value={purchaseAmount} onChange={(e) => validatePurchaseAmount(e.target.value)} />
+          <button onClick={() => onPurchase()} className='mint-button'>Mint</button>
+        </div>
       </Modal>
       <img className='top-drip' src={'./drip_top.png'}/>
       <img className='top-drip' src={'./drip_top.png'} style={{right: -10}} />
@@ -150,7 +197,7 @@ const App = () => {
               <div>
                 <h4 className='small-text-block-title'>Rewards</h4>
                 <p className='small-text-block'>
-                  As the project continues to grow, so does the exclusive access and rewards given to our clique. We will be offering consistent prizes in multiple forms, such as airdrops, sneak-peaks, merchandise, and much more. Our goal is to constantly give back to our clique that supports us through this evolution. 
+                  As the project continues to grow, so does the exclusive access and rewards given to our clique. We will be offering consistent prizes in multiple forms, such as airdrops, sneak-peaks, merchandise, and much more. Our goal is to constantly give back to our clique that supports us through this evolution.
                 </p>
               </div>
             </div>
@@ -252,13 +299,13 @@ const App = () => {
               <h4 className='small-text-block-title'>Step No.4</h4>
               <h4 className='small-text-block-title'>the hype is real</h4>
               <p className='small-text-block'>
-                7777 trees have been planted, the CLTV merch shop is open for collectors, the NFT to phsyical art platform is activated & partnerships/endorsements are a-go. DNA Labs will give the community a 'sneak peak' off their next drop which TBC holders holding select TBC bears will be air dropped. 
+                7777 trees have been planted, the CLTV merch shop is open for collectors, the NFT to phsyical art platform is activated & partnerships/endorsements are a-go. DNA Labs will give the community a 'sneak peak' off their next drop which TBC holders holding select TBC bears will be air dropped.
               </p>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div ref={teamRef} style={{alignContent: 'center', paddingBottom: 100, marginTop: 100}}>
         <h1 className='blood-font meet-team'> MEET THE TEAM</h1>
         <h2 style={{textAlign: 'center'}} className='coming-soon'>COMING SOON...</h2>
@@ -289,21 +336,21 @@ const App = () => {
 export default App;
 
 // let res = await contract.methods
-    // .mint(1)
-    // .send({
-    //   from: '0xcd3B766CCDd6AE721141F452C550Ca635964ce71',
-    //   to: '0xd46e8dd67c5d32be8058bb8eb970870f07244567',
-    //   gas: '0x76c0', // 30400
-    //   gasPrice: '0x9184e72a000', // 10000000000000
-    //   value: '0x9184e72a', // 2441406250
-    //   data:
-    //     '0xa0712d680000000000000000000000000000000000000000000000000000000000000001',
-    // })
-    // .on('confirmation', (confirmations, receipt) => {
-    //   console.log('CONFIRMATION');
-    //   console.log(confirmations);
-    //   console.log(receipt);
-    // });
+//     .mint(1)
+//     .send({
+//       from: '0xcd3B766CCDd6AE721141F452C550Ca635964ce71',
+//       to: '0xd46e8dd67c5d32be8058bb8eb970870f07244567',
+//       gas: '0x76c0', // 30400
+//       gasPrice: '0x9184e72a000', // 10000000000000
+//       value: '0x9184e72a', // 2441406250
+//       data:
+//         '0xa0712d680000000000000000000000000000000000000000000000000000000000000001',
+//     })
+//     .on('confirmation', (confirmations, receipt) => {
+//       console.log('CONFIRMATION');
+//       console.log(confirmations);
+//       console.log(receipt);
+//     });
     // console.log('res ', res);
     // window.ethereum
     // .request({
