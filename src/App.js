@@ -18,61 +18,54 @@ const abi = [
 
 const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
   const [account, setAccount] = useState();
+  const [purchaseAmount, setPurchaseAmount] = useState(1);
   const homeRef = useRef(null);
   const teamRef = useRef(null);
   const aboutRef = useRef(null);
   const charityRef = useRef(null);
   const VIPRef = useRef(null);
   const contract = new Web3EthContract(abi, address);
-  const context = useWeb3Context();
-
-
-  // This seems to be working fine, I can click the button and get metamask to connect the wallet
-  const onMint = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    setAccount(accounts[0]);
-    console.log('account: ',accounts, account);
-  }
-
-
-  // NO idea whats going on here, trying to use metamask to mint, it says that it is calling mint
-  // but I have no idea why, or why the price is zero, or what the data is, or value is, or what
-  // happens next, or how to poll the transaction for success or not 
-  const onPurchase = async () => {
-    const transactionParameters = {
-      gasPrice: '0x09184e72a000',
-      gas: '0x2710',
-      to: '0xd46e8dd67c5d32be8058bb8eb970870f07244567',
-      from: '0x010bc28dE2E080E233cA98Bc2D03B22D5CA8eD41',
-      value: '0x9184e72a',
-      data: '0xa0712d680000000000000000000000000000000000000000000000000000000000000001',
-    };
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [transactionParameters],
-    });
-    console.log('whats tx ', txHash);
-    setModalIsOpen(true);
-  }
-
-
-  // Testing out the contract call here
-  useEffect(() => {
-    const getPrices = async () => {
-      let res = await contract.methods.NFT_PRICE().call();
-    }
-    getPrices();
-  }, []);
-
+  const context = useWeb3Context()
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
   const aboutScroll = () => aboutRef.current.scrollIntoView();
   const charityScroll = () => charityRef.current.scrollIntoView();
   const VIPScroll = () => VIPRef.current.scrollIntoView();
 
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
+  const handleCloseModal = () => { setModalIsOpen(false); }
+  const handleSupplyCloseModal = () => { setSupplyModalIsOpen(false);}
+
+  const validatePurchaseAmount = (e) => { 
+    if(e < 6){
+      setPurchaseAmount(e);
+    }
+  }
+  // Testing out the contract call here
+  useEffect(() => {
+    const getPrices = async () => {
+      let res = await contract.methods.NFT_PRICE().call({
+        gas: '0x76c0', // 30400
+        gasPrice: '0x9184e72a000', 
+      });
+      console.log('res: ', res);
+    }
+    getPrices();
+  }, []);
+
+  const onMint = async () => {
+    // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    // setAccount(accounts[0]);
+    // console.log('account: ',accounts, account);
+  }
+
+  const onPurchase = async () => {
+    // setSupplyModalIsOpen(true);
+    let res = await contract.methods.mint(1).call({
+      gas: '0x76c0', // 30400
+      gasPrice: '0x9184e72a000', 
+    });
   }
 
   return (
@@ -86,6 +79,20 @@ const App = () => {
         className='minting-bear-modal'
       >
         <img src={'./minting_bear.gif'} className='minting-bear-image' />
+      </Modal>
+      <Modal
+        disableEnforceFocus
+        open={supplyModalIsOpen}
+        onClose={handleSupplyCloseModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className='minting-bear-modal supply'
+      >
+        <div className='supply-container'>
+          <h1 className='blood-font'>How many bears do you want to mint?</h1>
+          <input type='number' className='mint-input' value={purchaseAmount} onChange={(e) => validatePurchaseAmount(e.target.value)} />
+          <button onClick={() => onPurchase()} className='mint-button'>Mint</button>
+        </div>
       </Modal>
       <img className='top-drip' src={'./drip_top.png'}/>
       <img className='top-drip' src={'./drip_top.png'} style={{right: -10}} />
@@ -289,21 +296,21 @@ const App = () => {
 export default App;
 
 // let res = await contract.methods
-    // .mint(1)
-    // .send({
-    //   from: '0xcd3B766CCDd6AE721141F452C550Ca635964ce71',
-    //   to: '0xd46e8dd67c5d32be8058bb8eb970870f07244567',
-    //   gas: '0x76c0', // 30400
-    //   gasPrice: '0x9184e72a000', // 10000000000000
-    //   value: '0x9184e72a', // 2441406250
-    //   data:
-    //     '0xa0712d680000000000000000000000000000000000000000000000000000000000000001',
-    // })
-    // .on('confirmation', (confirmations, receipt) => {
-    //   console.log('CONFIRMATION');
-    //   console.log(confirmations);
-    //   console.log(receipt);
-    // });
+//     .mint(1)
+//     .send({
+//       from: '0xcd3B766CCDd6AE721141F452C550Ca635964ce71',
+//       to: '0xd46e8dd67c5d32be8058bb8eb970870f07244567',
+//       gas: '0x76c0', // 30400
+//       gasPrice: '0x9184e72a000', // 10000000000000
+//       value: '0x9184e72a', // 2441406250
+//       data:
+//         '0xa0712d680000000000000000000000000000000000000000000000000000000000000001',
+//     })
+//     .on('confirmation', (confirmations, receipt) => {
+//       console.log('CONFIRMATION');
+//       console.log(confirmations);
+//       console.log(receipt);
+//     });
     // console.log('res ', res);
     // window.ethereum
     // .request({
