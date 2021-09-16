@@ -10,6 +10,8 @@ import Web3EthContract from 'web3-eth-contract';
 // let web3 = new Web3('ws://localhost:8546');
 
 const PROVIDER_URL = 'wss://rinkeby.infura.io/ws/v3/3f30c3d9a4794b6bac600ac401675dc8';
+const web3 = new Web3(PROVIDER_URL);
+
 Web3EthContract.setProvider(PROVIDER_URL);
 const address = '0xeAf59aCF00435857d4D0e26E2b48948B86A8A8ca';
 const abi = [
@@ -49,7 +51,7 @@ const App = () => {
         gas: '0x76c0', // 30400
         gasPrice: '0x9184e72a000', 
       });
-      console.log('res: ', res);
+      console.log('NFT PRICE: ', res);
     }
     getPrices();
   }, []);
@@ -62,10 +64,19 @@ const App = () => {
 
   const onPurchase = async () => {
     // setSupplyModalIsOpen(true);
+    console.log('web3 ', web3);
+    // web3.utils.randomHex(32);
     let res = await contract.methods.mint(1).call({
-      gas: '0x76c0', // 30400
-      gasPrice: '0x9184e72a000', 
+      gas: '40000', // 30400
+      // nonce: web3.utils.toHex(0),
+      to: '0xeAf59aCF00435857d4D0e26E2b48948B86A8A8ca',
+      from: '0x010bc28dE2E080E233cA98Bc2D03B22D5CA8eD41',
+      // chainId: networkId,
+      value: 50000000000000000,
+      gasLimit:210000,
+      gasPrice: 40000,
     });
+    console.log('whats res ', res);
   }
 
   return (
