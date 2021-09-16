@@ -79,7 +79,7 @@ const App = () => {
     setModalIsOpen(true);
     contract.methods.mint(purchaseAmount).send({
       // nonce: web3.utils.toHex(0),
-      from: '0x010bc28dE2E080E233cA98Bc2D03B22D5CA8eD41',
+      from: account,
       numberOfTokensMax5: 1 * purchaseAmount,
       value:  (50000000000000000 * purchaseAmount)
     }).then((res)=> {
