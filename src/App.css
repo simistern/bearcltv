@@ -37,7 +37,34 @@
    justify-content: space-around;
    align-items: center;
 }
-
+.mint-input{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+.mint-button{
+  display: flex;
+  margin-top: 25px;
+  font-family: 'Fira Code', monospace;
+  margin-left: auto;
+  margin-right: auto;
+  background:    #000000;
+  border-radius: 31px;
+  box-shadow:    5px 5px 10px 0px rgba(0,0,0,0.76);
+  padding:       15px 25px;
+  color:         #ffffff;
+  text-align:    center;
+}
+.supply-container{
+  background-color: black;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+  border-radius: 5px;
+  padding: 30px;
+}
 .header-link{
   font-family: 'Major Mono Display', monospace;
   text-align: center;
