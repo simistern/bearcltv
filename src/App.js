@@ -122,10 +122,10 @@ const App = () => {
           <h1 className='header-3 blood-font'>Charitable + Carbon Neutral</h1>
           <div className='two-column-container'>
             <div className='longer-mid-paragraph left-aligned'>
-              <p> For the initial launch, every TBC NFT minted (7,777) we will be planting a tree over various geographical locations. This not only allows the TBC project to be carbon neutral but it also helps our diverse planet and the eople who live on it . Thanks to our partners, by planting trees through TBC, you will be: </p>
+              <p> For the initial launch, every TBC NFT minted (7,777) we will be planting a tree over various geographical locations. This not only allows the TBC project to be carbon neutral but it also helps our diverse planet and the people who live on it . Thanks to our partners, by planting trees through TBC, you will be: </p>
               <ul className='outside-list left-aligned'>
                 <li >Empowering Local women in Rwanda: Providing mentorship to local farmers through their women's cooperative, helping them revive their land and improve their quality of life.</li>
-                <li>Improving food security: By planting both native trees and fruit trees, local farmers can rehabilitate their land while creating a sustainable sourc eof food & income.</li>
+                <li>Improving food security: By planting both native trees and fruit trees, local farmers can rehabilitate their land while creating a sustainable source of food & income.</li>
                 <li>Protecting biodiversity across multiple locations benefiting water supply across the globe as well as animal habitats & conservation.</li>
               </ul>
             </div>
@@ -163,7 +163,7 @@ const App = () => {
         <div className='two-column-container' style={{marginTop: 50, marginBottom: 70}}>
           <img src={'./art_slide.png'} className='right-side-image'  width={'45%'} height={'40%'} style={{marginLeft: '5%'}} />
           <div className='right-box'>
-            <p className='slightly-longer-mid-paragraph3'>TBC Physical art is carefully crafted with the same design process as their NFT collection. The art is printed with high-quality fine art technology and coated with numerous slections of finishings such as resin on canvas, matte canvas, glossy metal, acrylic, + more.</p>
+            <p className='slightly-longer-mid-paragraph3'>TBC Physical art is carefully crafted with the same design process as their NFT collection. The art is printed with high-quality fine art technology and coated with numerous selections of finishings such as resin on canvas, matte canvas, glossy metal, acrylic, + more.</p>
           </div>
         </div>
         <div className='two-column-container margin-call'>
@@ -180,7 +180,7 @@ const App = () => {
             <div className='quarter-text'>
               <h4 className='small-text-block-title' >Step No.1</h4>
               <h4 className='small-text-block-title' >out from Hibernation</h4>
-              <p  className='small-text-block'>TBC & DNA Labs have established their initial marketing push, driving collectors, art enthusiasts, & fashion lovers from all around the glob to our main discord server generating the TBC COmmunity, & building the hype before the drop. TBC will also give away two of the first Physical Prints on Acrylic + more.</p>
+              <p  className='small-text-block'>TBC & DNA Labs have established their initial marketing push, driving collectors, art enthusiasts, & fashion lovers from all around the globe to our main discord server generating the TBC COmmunity, & building the hype before the drop. TBC will also give away two of the first Physical Prints on Acrylic + more.</p>
             </div>
             <div className='quarter-text'>
               <h4 className='small-text-block-title'>Step No.2</h4>
@@ -193,13 +193,13 @@ const App = () => {
             <div>
               <h4 className='small-text-block-title'>Step No.3</h4>
               <h4 className='small-text-block-title'>brand establishing</h4>
-              <p className='small-text-block'>TBC has an established but it doesn't stop there...The team will begin raining endorsements, partnerships, and collaborations. By this time, the physical mint to art will be up in full effect.</p>
+              <p className='small-text-block'>TBC has an established brand but it doesn't stop there...The team will begin raining endorsements, partnerships, and collaborations. By this time, the physical mint to art will be up in full effect.</p>
             </div>
             <div>
               <h4 className='small-text-block-title'>Step No.4</h4>
               <h4 className='small-text-block-title'>the hype is real</h4>
               <p className='small-text-block'>
-                7777 trees have been planted, the CLTV merch shop is open for collectors, the NFT to phsyical art platform is activated & partnerships/endorsements are a-go. DNA Labs will give the community a 'sneak peak' off their next drop which TBC holders holding select TBC bears will be air dropped. 
+                7777 trees have been planted, the CLTV merch shop is open for collectors, the NFT to phsyical art platform is activated & partnerships/endorsements are a-go. DNA Labs will give the community a 'sneak peak' of their next drop which TBC holders holding select TBC bears will be air dropped. 
               </p>
             </div>
           </div>
