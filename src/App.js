@@ -217,7 +217,7 @@ const App = () => {
             </div>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: -30}}>
               <img src='./discord.png' width={100} />
-              <div className='bear-link'><a target="_blank" href='https://discord.gg/SuR9bVqP3z' style={{color: 'black'}}>@TheBearCLTV</a></div>
+              <div className='bear-link'><a target="_blank" href='https://discord.com/invite/thebearcltv' style={{color: 'black'}}>@TheBearCLTV</a></div>
             </div>
             <div style={{marginLeft: '15%',textAlign: 'center', fontSize: 14, width: 175}} className='blood-font'>
               2021 THE BEAR CLTV LLC <br/>
