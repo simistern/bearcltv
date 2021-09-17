@@ -124,18 +124,21 @@ const App = () => {
   const onPurchase = async () => {
     setSupplyModalIsOpen(false);
     setModalIsOpen(true);
-    contract.methods.mint(purchaseAmount).send({
-      // nonce: web3.utils.toHex(0),
-      from: account,
-      numberOfTokensMax5: 1 * purchaseAmount,
-      value:  (price * purchaseAmount)
-    }).then((res)=> {
-        console.log('res ', res);
-        mixpanel.track('successful mint');
-        setModalIsOpen(false);
-        setMintSuccessful(true);
-      }
-    )
+    try{
+      contract.methods.mint(purchaseAmount).send({
+        from: account,
+        numberOfTokensMax5: 1 * purchaseAmount,
+        value:  (price * purchaseAmount)
+      }).then((res)=> {
+          console.log('res ', res);
+          mixpanel.track('successful mint');
+          setModalIsOpen(false);
+          setMintSuccessful(true);
+        }
+      )
+    }catch{
+      setModalIsOpen(false);
+    }
   }
 
   return (
