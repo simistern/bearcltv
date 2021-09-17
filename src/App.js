@@ -7,7 +7,7 @@ import './App.css';
 import Web3 from 'web3';
 import Web3EthContract from 'web3-eth-contract';
 
-const address = '0xeAf59aCF00435857d4D0e26E2b48948B86A8A8ca';
+const contractAddress = '0xb2D1eeaF3757C4C20F66B6a2d71F94ADbF81Be53';
 const abi = [
  {"inputs":[{"internalType":"string","name":"name_","type":"string"},{"internalType":"string","name":"symbol_","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"},{"internalType":"uint256","name":"maxPurchase","type":"uint256"},{"internalType":"uint256","name":"maxSupply_","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"MAX_NFT_PURCHASE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"NFT_PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"calcStartingIndex","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"emergencySetStartingIndexBlock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"flipSaleState","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"numberOfTokensMax5","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"num","type":"uint256"}],"name":"reserveTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"saleIsActive","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"baseURI_","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"startingIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"startingIndexBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}
 ];
@@ -16,8 +16,10 @@ mixpanel.init("bd2b7eb79cc996dfe5699b608c910bfe");
 
 const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [mintSuccessful, setMintSuccessful] = useState(false);
   const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
   const [account, setAccount] = useState();
+  const [price, setPrice] = useState();
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const [walletIsConnected, setWalletIsConnected] = useState(false);
   const mintingEnabled = true;
@@ -33,20 +35,24 @@ const App = () => {
 
   useEffect(() => {
     const getProv = async () => { 
-      const provider = await detectEthereumProvider();
-      if (provider) {
-        web3 = new Web3(window.web3.currentProvider);
-        Web3EthContract.setProvider(window.web3.currentProvider);
-        // From now on, this should always be true:
-        // provider === window.ethereum
-      }else if(!window.ethereum){
-        // web3 = new Web3(window.web3.currentProvider);
-        // Web3EthContract.setProvider(window.web3.currentProvider);
-        console.log('Please install MetaMask!');
-        alert('We cannot detect your metamask extension!')
-      } else {
-        console.log('Please install MetaMask!');
-        alert('We cannot detect your metamask extension!')
+      try {
+        const provider = await detectEthereumProvider();
+        if (provider) {
+          web3 = new Web3(window.web3.currentProvider);
+          Web3EthContract.setProvider(window.web3.currentProvider);
+          // From now on, this should always be true:
+          // provider === window.ethereum
+        }else if(!window.ethereum){
+          // web3 = new Web3(window.web3.currentProvider);
+          // Web3EthContract.setProvider(window.web3.currentProvider);
+          console.log('Please install MetaMask!');
+          alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
+        } else {
+          console.log('Please install MetaMask!');
+          alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
+        }
+      } catch (error) {
+        alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
       }
     }
     getProv();
@@ -70,14 +76,12 @@ const App = () => {
     }
   }, [web3]);
 
-  const contract = new Web3EthContract(abi, address);
-  
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
   const aboutScroll = () => aboutRef.current.scrollIntoView();
   const charityScroll = () => charityRef.current.scrollIntoView();
   const VIPScroll = () => VIPRef.current.scrollIntoView();
-
+  const contract = new Web3EthContract(abi, contractAddress);
   const handleCloseModal = () => { setModalIsOpen(false); }
   const handleSupplyCloseModal = () => { setSupplyModalIsOpen(false);}
 
@@ -95,6 +99,7 @@ const App = () => {
         gasPrice: '0x9184e72a000',
       });
       console.log('NFT PRICE: ', res);
+      setPrice(res);
       } catch (error) {
         
       }
@@ -103,13 +108,17 @@ const App = () => {
   }, [web3]);
 
   const onWalletConnect = async () => {
-    web3.eth.requestAccounts().then(
-      (accounts) => {
-        console.log('accoutns: ', accounts)
-        setAccount(accounts[0]);
-        setWalletIsConnected(true);
-      }
-    );
+    try{
+      web3.eth.requestAccounts().then(
+        (accounts) => {
+          console.log('accoutns: ', accounts)
+          setAccount(accounts[0]);
+          setWalletIsConnected(true);
+        }
+      );
+    }catch{ 
+      alert('we cannot detect your metamask extension! Please use the metamask browser if you\'re on mobile')
+    }
   }
 
   const onPurchase = async () => {
@@ -119,11 +128,12 @@ const App = () => {
       // nonce: web3.utils.toHex(0),
       from: account,
       numberOfTokensMax5: 1 * purchaseAmount,
-      value:  (50000000000000000 * purchaseAmount)
+      value:  (price * purchaseAmount)
     }).then((res)=> {
         console.log('res ', res);
         mixpanel.track('successful mint');
         setModalIsOpen(false);
+        setMintSuccessful(true);
       }
     )
   }
@@ -171,6 +181,7 @@ const App = () => {
         <div style={{marginTop: 125, marginLeft: '5%', marginRight: '5%'}}>
           <img src={'./red_bear.png'} className='first-bear-image-small' />
           {/* <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div> */}
+          {mintSuccessful ? <div className='blood-font' style={{display: 'flex', justifyContent: 'center', marginBottom: 20}}>Mint Successful</div> : null}
           <div className='button-container'>
             {mintingEnabled ? 
               walletIsConnected ?
