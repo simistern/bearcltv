@@ -854,6 +854,22 @@
     width:40%;
   }
   
+
+  .minting-bear-image{
+    height: 70%;
+    width: 90%;
+    border-radius: 5px;
+    outline: 0;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .team-container{ 
     display: flex;
     flex-direction: row-reverse;
