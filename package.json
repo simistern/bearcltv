@@ -12,8 +12,7 @@
     "react": "18.0.0-alpha-fd5e01c2e-20210913",
     "react-dom": "18.0.0-alpha-fd5e01c2e-20210913",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1",
-    "web3-react": "^5.0.5"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

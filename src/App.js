@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Container from '@material-ui/core/Container';
 import './App.css';
-import { useWeb3Context } from 'web3-react';
+import useTimeout from './timeout';
 
 const App = () => {
   const homeRef = useRef(null);
@@ -10,25 +10,9 @@ const App = () => {
   const charityRef = useRef(null);
   const VIPRef = useRef(null);
 
-  const context = useWeb3Context();
-  console.log('web3: ', context);
-  useEffect(() => {
-    context.setFirstValidConnector(['MetaMask'])
-  }, [])
-
-  if (!context.active && !context.error) {
-    console.log('loading');
-    // loading
-    // return ...
-  } else if (context.error) {
-    console.log('error ', context.error);
-    //error
-    // return ...
-  } else {
-    console.log('success');
-    // success
-    // return ...
-  }
+  // const [visible, setVisible] = useState(true)
+  // const hide = () => setVisible(false)
+  // useTimeout(hide, 1000);
 
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
