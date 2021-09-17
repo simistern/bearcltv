@@ -78,14 +78,18 @@ const App = () => {
   // Testing out the contract call here
   useEffect(() => {
     const getPrices = async () => {
+      try {
       let res = await contract.methods.NFT_PRICE().call({
         gas: '0x76c0', // 30400
         gasPrice: '0x9184e72a000',
       });
       console.log('NFT PRICE: ', res);
+      } catch (error) {
+        
+      }
     }
     getPrices();
-  }, []);
+  }, [web3]);
 
   const onWalletConnect = async () => {
     web3.eth.requestAccounts().then(
