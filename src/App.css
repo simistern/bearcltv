@@ -37,7 +37,37 @@
    justify-content: space-around;
    align-items: center;
 }
-
+.mint-input{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  font-size: 30px;
+  width: 20%;
+  font-weight: 700;
+}
+.mint-button{
+  display: flex;
+  margin-top: 25px;
+  font-family: 'Fira Code', monospace;
+  margin-left: auto;
+  margin-right: auto;
+  background:    #000000;
+  border-radius: 31px;
+  box-shadow:    5px 5px 10px 0px rgba(0,0,0,0.76);
+  padding:       15px 25px;
+  color:         #ffffff;
+  text-align:    center;
+}
+.supply-container{
+  background-color: black;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+  border-radius: 5px;
+  padding: 30px;
+}
 .header-link{
   font-family: 'Major Mono Display', monospace;
   text-align: center;
@@ -47,7 +77,24 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-
+.minting-bear-modal{
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  display: flex;
+}
+.minting-bear-image{
+  height: 80%;
+  border-radius: 5px;
+  outline: 0;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .bear-header{ 
   font-family: 'Charu_Chandan_BloodDrip_Unicode-Regular';
   src: local('Charu_Chandan_BloodDrip_Unicode-Regular'), url(./fonts/Charu_Chandan_BloodDrip_Unicode-Regular.ttf) format('ttf');
@@ -255,6 +302,10 @@
 
 .coming-soon{ 
   font-family: 'Major Mono Display', monospace;
+}
+
+.coming-soon-font{
+  font-family: 'Fira Code', monospace;
 }
 
 .coming-soon2{
@@ -807,6 +858,22 @@
     width:40%;
   }
   
+
+  .minting-bear-image{
+    height: 70%;
+    width: 90%;
+    border-radius: 5px;
+    outline: 0;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .team-container{ 
     display: flex;
     flex-direction: row-reverse;

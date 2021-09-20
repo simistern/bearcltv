@@ -8,11 +8,16 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@walletconnect/web3-provider": "^1.6.5",
     "ethers": "^5.4.6",
+    "mixpanel-browser": "^2.41.0",
     "react": "18.0.0-alpha-fd5e01c2e-20210913",
     "react-dom": "18.0.0-alpha-fd5e01c2e-20210913",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "web3": "^1.5.2",
+    "web3-eth-contract": "^1.5.2",
+    "web3modal": "^1.9.4"
   },
   "scripts": {
     "start": "react-scripts start",

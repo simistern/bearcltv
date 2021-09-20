@@ -1,7 +1,35 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Container from '@material-ui/core/Container';
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import './App.css';
-import useTimeout from './timeout';
+import mixpanel from 'mixpanel-browser';
+import Web3EthContract from 'web3-eth-contract';
+import Modal from '@material-ui/core/Modal';
+
+const providerOptions = {
+  walletconnect: {
+    package: WalletConnectProvider,
+    options: {
+      infuraId: "3f30c3d9a4794b6bac600ac401675dc8",
+    }
+  },
+};
+
+mixpanel.init("bd2b7eb79cc996dfe5699b608c910bfe");
+const contractAddress = '0xb2D1eeaF3757C4C20F66B6a2d71F94ADbF81Be53';
+const abi = [
+ {"inputs":[{"internalType":"string","name":"name_","type":"string"},{"internalType":"string","name":"symbol_","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"},{"internalType":"uint256","name":"maxPurchase","type":"uint256"},{"internalType":"uint256","name":"maxSupply_","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"MAX_NFT_PURCHASE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"NFT_PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"calcStartingIndex","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"emergencySetStartingIndexBlock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"flipSaleState","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"numberOfTokensMax5","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"num","type":"uint256"}],"name":"reserveTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"saleIsActive","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"baseURI_","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"startingIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"startingIndexBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}
+];
+
+const web3Modal = new Web3Modal({
+  cacheProvider: true, // optional
+  providerOptions // required
+});
+
+let provider;
+let web3;
 
 const App = () => {
   const homeRef = useRef(null);
@@ -9,19 +37,274 @@ const App = () => {
   const aboutRef = useRef(null);
   const charityRef = useRef(null);
   const VIPRef = useRef(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [mintSuccessful, setMintSuccessful] = useState(false);
+  const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
+  const [transactionHash, setTransactionHash] = useState(null);
+  const [account, setAccount] = useState();
+  const [price, setPrice] = useState();
+  const [purchaseAmount, setPurchaseAmount] = useState(1);
+  const [walletIsConnected, setWalletIsConnected] = useState(false);
+  const [maxPurchase, setMaxPurchase] = useState(25);
+  const mintingEnabled = true;
 
-  // const [visible, setVisible] = useState(true)
-  // const hide = () => setVisible(false)
-  // useTimeout(hide, 1000);
+  useEffect(() => {
+    const getProvider = async () => { 
+      provider = await web3Modal.connect();
+      Web3EthContract.setProvider(provider);
+      web3 = new Web3(provider);
+    }
+    getProvider();
+    onConnect();
+  }, [web3]);
+
+  async function onConnect() {
+    console.log("Opening a dialog", web3Modal);
+    try {
+      provider = await web3Modal.connect();
+    } catch(e) {
+      console.log("Could not get a wallet connection", e);
+      return;
+    }
+    // Subscribe to accounts change
+    provider.on("accountsChanged", (accounts) => {
+      fetchAccountData();
+    });
+    // Subscribe to chainId change
+    provider.on("chainChanged", (chainId) => {
+      fetchAccountData();
+    });
+    // Subscribe to networkId change
+    provider.on("networkChanged", (networkId) => {
+      fetchAccountData();
+    });
+    await refreshAccountData();
+  }
+  async function refreshAccountData() {
+    await fetchAccountData(provider);
+  }
+
+  /**
+ * Kick in the UI action after Web3modal dialog has chosen a provider
+ */
+async function fetchAccountData() {
+
+  // Get a Web3 instance for the wallet
+  const web3 = new Web3(provider);
+
+  console.log("Web3 instance is", web3);
+
+  // Get connected chain id from Ethereum node
+  const chainId = await web3.eth.getChainId();
+  // Load chain information over an HTTP API
+  // const chainData = evmChains.getChain(chainId);
+  // document.querySelector("#network-name").textContent = chainData.name;
+
+  // Get list of accounts of the connected wallet
+  const accounts = await web3.eth.getAccounts();
+
+  // MetaMask does not give you all accounts, only the selected account
+  console.log("Got accounts", accounts);
+  let selectedAccount = accounts[0];
+  setAccount(selectedAccount);
+  setWalletIsConnected(true);
+  // document.querySelector("#selected-account").textContent = selectedAccount;
+
+  // Get a handl
+  // const template = document.querySelector("#template-balance");
+  // const accountContainer = document.querySelector("#accounts");
+
+  // Purge UI elements any previously loaded accounts
+  // accountContainer.innerHTML = '';
+
+  // Go through all accounts and get their ETH balance
+  const rowResolvers = accounts.map(async (address) => {
+    const balance = await web3.eth.getBalance(address);
+    // ethBalance is a BigNumber instance
+    // https://github.com/indutny/bn.js/
+    const ethBalance = web3.utils.fromWei(balance, "ether");
+    const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
+    // Fill in the templated row and put in the document
+    // const clone = template.content.cloneNode(true);
+    // clone.querySelector(".address").textContent = address;
+    // clone.querySelector(".balance").textContent = humanFriendlyBalance;
+    // accountContainer.appendChild(clone);
+  });
+
+  // Because rendering account does its own RPC commucation
+  // with Ethereum node, we do not want to display any results
+  // until data for all accounts is loaded
+  await Promise.all(rowResolvers);
+
+  // Display fully loaded UI for wallet data
+  // document.querySelector("#prepare").style.display = "none";
+  // document.querySelector("#connected").style.display = "block";
+}
+
+  useEffect(() => {
+    mixpanel.track("Site visit");
+  }, []);
+
+  // useEffect(() => {
+  //   const getProv = async () => { 
+  //     try {
+  //       const provider = await detectEthereumProvider();
+  //       if (provider) {
+  //         web3 = new Web3(window.web3.currentProvider);
+  //         Web3EthContract.setProvider(window.web3.currentProvider);
+  //         // From now on, this should always be true:
+  //         // provider === window.ethereum
+  //       }else if(!window.ethereum){
+  //         // web3 = new Web3(window.web3.currentProvider);
+  //         // Web3EthContract.setProvider(window.web3.currentProvider);
+  //         console.log('Please install MetaMask!');
+  //         alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
+  //       } else {
+  //         console.log('Please install MetaMask!');
+  //         alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
+  //       }
+  //     } catch (error) {
+  //       alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
+  //     }
+  //   }
+  //   getProv();
+  // }, []);
+
+  // useEffect(() => {
+  //   try {
+  //     if(web3 && web3.eth){
+  //       web3.eth.requestAccounts().then(
+  //         (accounts) => {
+  //           mixpanel.track("Site visit");
+  //           console.log('accoutns: ', accounts)
+  //           setAccount(accounts[0]);
+  //           setWalletIsConnected(true);
+  //         }
+  //       );
+  //     } 
+  //   } catch (error) {
+  //     console.log('error ');
+  //     mixpanel.track('error registering account');
+  //   }
+  // }, [web3]);
+
+  // const onWalletConnect = async () => {
+  //   try{
+  //     web3.eth.requestAccounts().then(
+  //       (accounts) => {
+  //         console.log('accoutns: ', accounts)
+  //         setAccount(accounts[0]);
+  //         setWalletIsConnected(true);
+  //       }
+  //     );
+  //   }catch{ 
+  //     alert('we cannot detect your metamask extension! Please use the metamask browser if you\'re on mobile')
+  //   }
+  // }
 
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
   const aboutScroll = () => aboutRef.current.scrollIntoView();
   const charityScroll = () => charityRef.current.scrollIntoView();
   const VIPScroll = () => VIPRef.current.scrollIntoView();
+  const contract = new Web3EthContract(abi, contractAddress);
+  const handleCloseModal = () => { setModalIsOpen(false); }
+  const handleSupplyCloseModal = () => { setSupplyModalIsOpen(false);}
+  
+  const validatePurchaseAmount = (e) => {
+    if(e < (maxPurchase + 1)){
+      setPurchaseAmount(e);
+    }
+  }
+  // Testing out the contract call here
+  useEffect(() => {
+    const getPrices = async () => {
+      try {
+      let res = await contract.methods.NFT_PRICE().call({
+        gas: '0x76c0', // 30400
+        gasPrice: '0x9184e72a000',
+      });
+      let tempMaxPurchase = await contract.methods.MAX_NFT_PURCHASE().call({
+        gas: '0x76c0', // 30400
+        gasPrice: '0x9184e72a000',
+      });
+      console.log('NFT PRICE: ', res, tempMaxPurchase);
+      setPrice(res);
+      setMaxPurchase(parseInt(tempMaxPurchase));
+      } catch (error) {
+        console.log('no price? ', error)
+      }
+    }
+    getPrices();
+  }, [web3]);
+
+  const onPurchase = async () => {
+    setSupplyModalIsOpen(false);
+    setModalIsOpen(true);
+    try{
+      console.log('show mint: ', account, purchaseAmount, price)
+      contract.methods.mint(purchaseAmount).send({
+        from: account,
+        numberOfTokensMax5: 1 * purchaseAmount,
+        value:  (price * purchaseAmount)
+      })
+      .on('transactionHash', function(hash){
+        // ...
+    })
+    .on('confirmation', function(confirmationNumber, receipt){
+        // ...
+    })
+    .on('receipt', function(receipt){
+        // receipt example
+        console.log(receipt);
+        setTransactionHash(receipt.transactionHash);
+        mixpanel.track('successful mint');
+        setModalIsOpen(false);
+        setMintSuccessful(true);
+    })
+    .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+        console.log('error: ', error)
+        setModalIsOpen(false);
+    });
+      // .then((res)=> {
+      //     console.log('res ', res);
+      //     mixpanel.track('successful mint');
+      //     setModalIsOpen(false);
+      //     setMintSuccessful(true);
+      //   }
+      // )
+    }catch(error){
+      console.log('error ', error);
+      setModalIsOpen(false);
+    }
+  }
 
   return (
     <div className="App" ref={homeRef}>
+      <Modal
+        disableEnforceFocus
+        open={modalIsOpen}
+        onClose={handleCloseModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className='minting-bear-modal'
+      >
+        <img src={'./minting_bear.gif'} className='minting-bear-image' />
+      </Modal>
+      <Modal
+        disableEnforceFocus
+        open={supplyModalIsOpen}
+        onClose={handleSupplyCloseModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className='minting-bear-modal supply'
+      >
+        <div className='supply-container'>
+          <h1 className='blood-font'>How many bears do you want to mint?</h1>
+          <input type='number' className='mint-input' value={purchaseAmount} onChange={(e) => validatePurchaseAmount(e.target.value)} />
+          <button onClick={() => onPurchase()} className='mint-button'>Mint</button>
+        </div>
+      </Modal>
       <img className='top-drip' src={'./drip_top.png'}/>
       <img className='top-drip' src={'./drip_top.png'} style={{right: -10}} />
       <img className='top-splatter' src={'./splatter.png'} />
@@ -38,9 +321,18 @@ const App = () => {
       </div>
         <div style={{marginTop: 125, marginLeft: '5%', marginRight: '5%'}}>
           <img src={'./red_bear.png'} className='first-bear-image-small' />
-          {/* <div className='blood-font small-tbc' style={{fontSize: 40, marginTop: 100, marginBottom: 50}}>TBC</div> */}
+          {mintSuccessful ? 
+              <div>
+                <div className='blood-font' style={{display: 'flex', justifyContent: 'center', fontSize: 28, marginBottom: 20}}>Mint Successful</div> 
+                <div className='coming-soon-font' style={{display: 'flex', justifyContent: 'center', marginBottom: 20}}>Transaction Hash: {transactionHash || 'null'}</div> 
+              </div>
+          : null}
           <div className='button-container'>
-            <button className='coming-soon-button'>COMING SOON.</button>
+            {mintingEnabled ? 
+              walletIsConnected ?
+                <button onClick={() => setSupplyModalIsOpen(true)} className='coming-soon-button'>MINT A BEAR</button>
+              : <button onClick={() => onConnect()} className='coming-soon-button'>CONNECT WALLET</button> 
+            : <button className='coming-soon-button'>COMING SOON</button> }
           </div>
           <h1 className='bear-header blood-font'> THE BEAR CLTV.</h1>
           <img src={'./red_bear.png'} className='first-bear-image' />
@@ -218,3 +510,8 @@ const App = () => {
 }
 
 export default App;
+
+  // const [visible, setVisible] = useState(true)
+  // const hide = () => setVisible(false)
+  // useTimeout(hide, 1000);import useTimeout from './timeout';
+  // import useTimeout from './timeout';
