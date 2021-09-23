@@ -30,6 +30,7 @@ const web3Modal = new Web3Modal({
 
 let provider;
 let web3;
+const releaseDate = new Date("09/26/2021 14:00");
 
 const App = () => {
   const homeRef = useRef(null);
@@ -47,7 +48,41 @@ const App = () => {
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const [walletIsConnected, setWalletIsConnected] = useState(false);
   const [maxPurchase, setMaxPurchase] = useState(25);
-  const mintingEnabled = true;
+  const [mintingEnabled, setMintingEnabled] = useState(false);
+
+  function useInterval(callback, delay) {
+    const savedCallback = useRef(callback)
+  
+    // Remember the latest callback if it changes.
+    useEffect(() => {
+      savedCallback.current = callback
+    }, [callback])
+  
+    // Set up the interval.
+    useEffect(() => {
+      // Don't schedule if no delay is specified.
+      if (delay === null) {
+        return
+      }
+  
+      const id = setInterval(() => savedCallback.current(), delay)
+  
+      return () => clearInterval(id)
+    }, [delay])
+  }
+
+  useInterval(
+    () => {
+      if(releaseDate > new Date()){
+        console.log('not yet... ', new Date());
+      }else{
+        console.log('now!... ');
+        setMintingEnabled(true);
+      }
+    },
+    // Delay in milliseconds or null to stop it
+    mintingEnabled === false ? 1000 : null,
+  )
 
   useEffect(() => {
     const getProvider = async () => {
