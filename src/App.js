@@ -41,6 +41,7 @@ const App = () => {
   const [mintSuccessful, setMintSuccessful] = useState(false);
   const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
   const [transactionHash, setTransactionHash] = useState(null);
+  const [mintError, setMintError] = useState(false);
   const [account, setAccount] = useState();
   const [price, setPrice] = useState(5000000000000);
   const [purchaseAmount, setPurchaseAmount] = useState(1);
@@ -132,31 +133,6 @@ async function fetchAccountData() {
     }
   }
 
-  // useEffect(() => {
-  //   if(provider){
-  //     provider.on("accountsChanged", (accounts) => {
-  //       console.log('accoutns changes ')
-  //       fetchAccountData();
-  //     });
-  //     // Subscribe to chainId change
-  //     provider.on("chainChanged", (chainId) => {
-  //       console.log('chain changes ')
-  //       fetchAccountData();
-  //     });
-  //     // Subscribe to networkId change
-  //     provider.on("networkChanged", (networkId) => {
-  //       console.log('network changes ')
-  //       fetchAccountData();
-  //     });
-  //     provider.on("connect", (info) => {
-  //       console.log('connected ', info);
-  //     });
-  //     provider.on("disconnect", (info) => {
-  //       console.log('disconnected ', info);
-  //     });
-  //   }
-  // }, [provider]);
-
   useEffect(() => {
     const getPrices = async () => {
       try {
@@ -180,6 +156,7 @@ async function fetchAccountData() {
 
   const onPurchase = async () => {
     setSupplyModalIsOpen(false);
+    setMintError(false);
     setModalIsOpen(true);
     try{
       console.log('show mint: ', account, purchaseAmount, price)
@@ -205,6 +182,7 @@ async function fetchAccountData() {
       .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
           console.log('error: ', error)
           setModalIsOpen(false);
+          setMintError(true);
       });
         // .then((res)=> {
         //     console.log('res ', res);
@@ -216,6 +194,7 @@ async function fetchAccountData() {
     }catch(error){
       console.log('error ', error);
       setModalIsOpen(false);
+      setMintError(true);
     }
   }
 
@@ -261,6 +240,10 @@ async function fetchAccountData() {
       </div>
         <div style={{marginTop: 125, marginLeft: '5%', marginRight: '5%'}}>
           <img src={'./red_bear.png'} className='first-bear-image-small' />
+          {mintError ?
+              <div className='blood-font' style={{display: 'flex', justifyContent: 'center', fontSize: 28, marginBottom: 20}}>There was an error minting your bear. Please try again or contact a member of the team.</div>
+            : null
+          }
           {mintSuccessful ? 
               <div>
                 <div className='blood-font' style={{display: 'flex', justifyContent: 'center', fontSize: 28, marginBottom: 20}}>Mint Successful</div> 
