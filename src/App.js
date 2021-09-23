@@ -42,14 +42,15 @@ const App = () => {
   const [supplyModalIsOpen, setSupplyModalIsOpen] = useState(false);
   const [transactionHash, setTransactionHash] = useState(null);
   const [account, setAccount] = useState();
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(5000000000000);
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const [walletIsConnected, setWalletIsConnected] = useState(false);
   const [maxPurchase, setMaxPurchase] = useState(25);
   const mintingEnabled = true;
 
   useEffect(() => {
-    const getProvider = async () => { 
+    const getProvider = async () => {
+      console.log('cached ', web3Modal.cachedProvider);
       provider = await web3Modal.connect();
       Web3EthContract.setProvider(provider);
       web3 = new Web3(provider);
@@ -62,21 +63,29 @@ const App = () => {
     console.log("Opening a dialog", web3Modal);
     try {
       provider = await web3Modal.connect();
+      Web3EthContract.setProvider(provider);
+      fetchAccountData();
     } catch(e) {
       console.log("Could not get a wallet connection", e);
       return;
     }
     // Subscribe to accounts change
     provider.on("accountsChanged", (accounts) => {
+      console.log('accoutns changes ')
       fetchAccountData();
     });
     // Subscribe to chainId change
     provider.on("chainChanged", (chainId) => {
+      console.log('chain changes ')
       fetchAccountData();
     });
     // Subscribe to networkId change
     provider.on("networkChanged", (networkId) => {
+      console.log('network changes ')
       fetchAccountData();
+    });
+    provider.on("connect", (info) => {
+      console.log('connected ', info);
     });
     await refreshAccountData();
   }
@@ -88,119 +97,25 @@ const App = () => {
  * Kick in the UI action after Web3modal dialog has chosen a provider
  */
 async function fetchAccountData() {
-
   // Get a Web3 instance for the wallet
   const web3 = new Web3(provider);
-
   console.log("Web3 instance is", web3);
-
+  Web3EthContract.setProvider(provider);
   // Get connected chain id from Ethereum node
   const chainId = await web3.eth.getChainId();
-  // Load chain information over an HTTP API
-  // const chainData = evmChains.getChain(chainId);
-  // document.querySelector("#network-name").textContent = chainData.name;
-
   // Get list of accounts of the connected wallet
   const accounts = await web3.eth.getAccounts();
-
   // MetaMask does not give you all accounts, only the selected account
   console.log("Got accounts", accounts);
   let selectedAccount = accounts[0];
+  // getPrices();
   setAccount(selectedAccount);
   setWalletIsConnected(true);
-  // document.querySelector("#selected-account").textContent = selectedAccount;
-
-  // Get a handl
-  // const template = document.querySelector("#template-balance");
-  // const accountContainer = document.querySelector("#accounts");
-
-  // Purge UI elements any previously loaded accounts
-  // accountContainer.innerHTML = '';
-
-  // Go through all accounts and get their ETH balance
-  const rowResolvers = accounts.map(async (address) => {
-    const balance = await web3.eth.getBalance(address);
-    // ethBalance is a BigNumber instance
-    // https://github.com/indutny/bn.js/
-    const ethBalance = web3.utils.fromWei(balance, "ether");
-    const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
-    // Fill in the templated row and put in the document
-    // const clone = template.content.cloneNode(true);
-    // clone.querySelector(".address").textContent = address;
-    // clone.querySelector(".balance").textContent = humanFriendlyBalance;
-    // accountContainer.appendChild(clone);
-  });
-
-  // Because rendering account does its own RPC commucation
-  // with Ethereum node, we do not want to display any results
-  // until data for all accounts is loaded
-  await Promise.all(rowResolvers);
-
-  // Display fully loaded UI for wallet data
-  // document.querySelector("#prepare").style.display = "none";
-  // document.querySelector("#connected").style.display = "block";
 }
 
   useEffect(() => {
     mixpanel.track("Site visit");
   }, []);
-
-  // useEffect(() => {
-  //   const getProv = async () => { 
-  //     try {
-  //       const provider = await detectEthereumProvider();
-  //       if (provider) {
-  //         web3 = new Web3(window.web3.currentProvider);
-  //         Web3EthContract.setProvider(window.web3.currentProvider);
-  //         // From now on, this should always be true:
-  //         // provider === window.ethereum
-  //       }else if(!window.ethereum){
-  //         // web3 = new Web3(window.web3.currentProvider);
-  //         // Web3EthContract.setProvider(window.web3.currentProvider);
-  //         console.log('Please install MetaMask!');
-  //         alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
-  //       } else {
-  //         console.log('Please install MetaMask!');
-  //         alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
-  //       }
-  //     } catch (error) {
-  //       alert('We cannot detect your metamask extension! Please use the metamask browser if you are on mobile')
-  //     }
-  //   }
-  //   getProv();
-  // }, []);
-
-  // useEffect(() => {
-  //   try {
-  //     if(web3 && web3.eth){
-  //       web3.eth.requestAccounts().then(
-  //         (accounts) => {
-  //           mixpanel.track("Site visit");
-  //           console.log('accoutns: ', accounts)
-  //           setAccount(accounts[0]);
-  //           setWalletIsConnected(true);
-  //         }
-  //       );
-  //     } 
-  //   } catch (error) {
-  //     console.log('error ');
-  //     mixpanel.track('error registering account');
-  //   }
-  // }, [web3]);
-
-  // const onWalletConnect = async () => {
-  //   try{
-  //     web3.eth.requestAccounts().then(
-  //       (accounts) => {
-  //         console.log('accoutns: ', accounts)
-  //         setAccount(accounts[0]);
-  //         setWalletIsConnected(true);
-  //       }
-  //     );
-  //   }catch{ 
-  //     alert('we cannot detect your metamask extension! Please use the metamask browser if you\'re on mobile')
-  //   }
-  // }
 
   const homeScroll = () => homeRef.current.scrollIntoView();
   const teamScroll = () => teamRef.current.scrollIntoView();
@@ -216,7 +131,32 @@ async function fetchAccountData() {
       setPurchaseAmount(e);
     }
   }
-  // Testing out the contract call here
+
+  // useEffect(() => {
+  //   if(provider){
+  //     provider.on("accountsChanged", (accounts) => {
+  //       console.log('accoutns changes ')
+  //       fetchAccountData();
+  //     });
+  //     // Subscribe to chainId change
+  //     provider.on("chainChanged", (chainId) => {
+  //       console.log('chain changes ')
+  //       fetchAccountData();
+  //     });
+  //     // Subscribe to networkId change
+  //     provider.on("networkChanged", (networkId) => {
+  //       console.log('network changes ')
+  //       fetchAccountData();
+  //     });
+  //     provider.on("connect", (info) => {
+  //       console.log('connected ', info);
+  //     });
+  //     provider.on("disconnect", (info) => {
+  //       console.log('disconnected ', info);
+  //     });
+  //   }
+  // }, [provider]);
+
   useEffect(() => {
     const getPrices = async () => {
       try {
@@ -236,7 +176,7 @@ async function fetchAccountData() {
       }
     }
     getPrices();
-  }, [web3]);
+  }, [web3, contract, web3Modal]);
 
   const onPurchase = async () => {
     setSupplyModalIsOpen(false);
@@ -249,30 +189,30 @@ async function fetchAccountData() {
         value:  (price * purchaseAmount)
       })
       .on('transactionHash', function(hash){
-        // ...
-    })
-    .on('confirmation', function(confirmationNumber, receipt){
-        // ...
-    })
-    .on('receipt', function(receipt){
-        // receipt example
-        console.log(receipt);
-        setTransactionHash(receipt.transactionHash);
-        mixpanel.track('successful mint');
-        setModalIsOpen(false);
-        setMintSuccessful(true);
-    })
-    .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
-        console.log('error: ', error)
-        setModalIsOpen(false);
-    });
-      // .then((res)=> {
-      //     console.log('res ', res);
-      //     mixpanel.track('successful mint');
-      //     setModalIsOpen(false);
-      //     setMintSuccessful(true);
-      //   }
-      // )
+          // ...
+      })
+      .on('confirmation', function(confirmationNumber, receipt){
+          // ...
+      })
+      .on('receipt', function(receipt){
+          // receipt example
+          console.log(receipt);
+          setTransactionHash(receipt.transactionHash);
+          mixpanel.track('successful mint');
+          setModalIsOpen(false);
+          setMintSuccessful(true);
+      })
+      .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+          console.log('error: ', error)
+          setModalIsOpen(false);
+      });
+        // .then((res)=> {
+        //     console.log('res ', res);
+        //     mixpanel.track('successful mint');
+        //     setModalIsOpen(false);
+        //     setMintSuccessful(true);
+        //   }
+        // )
     }catch(error){
       console.log('error ', error);
       setModalIsOpen(false);

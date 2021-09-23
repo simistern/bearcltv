@@ -306,6 +306,7 @@
 
 .coming-soon-font{
   font-family: 'Fira Code', monospace;
+  text-align: center;
 }
 
 .coming-soon2{
@@ -895,9 +896,9 @@
     text-align: center;
   }
 
-.airdrop{
-  margin-top: 300px;
-}
+  .airdrop{
+    margin-top: 300px;
+  }
 
   .first-bear-image-small{
     display: flex;
@@ -910,6 +911,12 @@
     height: 100%;
     margin-top: -150px;
     margin-bottom: 50px;
+  }
+
+  .coming-soon-font{
+    display: inline-block;
+    text-align: center;
+    font-size: 8px;
   }
 
   body{ 
