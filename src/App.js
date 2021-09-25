@@ -50,7 +50,7 @@ const App = () => {
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const [walletIsConnected, setWalletIsConnected] = useState(false);
   const [maxPurchase, setMaxPurchase] = useState(25);
-  const [mintingEnabled, setMintingEnabled] = useState(false);
+  const [mintingEnabled, setMintingEnabled] = useState(true);
 
   function useInterval(callback, delay) {
     const savedCallback = useRef(callback)
