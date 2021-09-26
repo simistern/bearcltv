@@ -50,7 +50,7 @@ const App = () => {
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const [walletIsConnected, setWalletIsConnected] = useState(false);
   const [maxPurchase, setMaxPurchase] = useState(20);
-  const [mintingEnabled, setMintingEnabled] = useState(false);
+  const [mintingEnabled, setMintingEnabled] = useState(true);
 
   function useInterval(callback, delay) {
     const savedCallback = useRef(callback)
@@ -73,18 +73,18 @@ const App = () => {
     }, [delay])
   }
 
-  useInterval(
-    () => {
-      if(releaseDate > new Date()){
-        console.log('not yet... ', new Date());
-      }else{
-        console.log('now!... ');
-        // setMintingEnabled(true);
-      }
-    },
-    // Delay in milliseconds or null to stop it
-    mintingEnabled === false ? 1000 : null,
-  )
+  // useInterval(
+  //   () => {
+  //     if(releaseDate > new Date()){
+  //       console.log('not yet... ', new Date());
+  //     }else{
+  //       console.log('now!... ');
+  //       // setMintingEnabled(true);
+  //     }
+  //   },
+  //   // Delay in milliseconds or null to stop it
+  //   mintingEnabled === false ? 1000 : null,
+  // )
 
   useEffect(() => {
     const getProvider = async () => {
