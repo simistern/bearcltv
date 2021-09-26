@@ -32,7 +32,7 @@ const web3Modal = new Web3Modal({
 
 let provider;
 let web3;
-const releaseDate = new Date("09/26/2021 13:59");
+const releaseDate = new Date("09/26/2021 14:00");
 
 const App = () => {
   const homeRef = useRef(null);
@@ -79,7 +79,7 @@ const App = () => {
         console.log('not yet... ', new Date());
       }else{
         console.log('now!... ');
-        setMintingEnabled(true);
+        // setMintingEnabled(true);
       }
     },
     // Delay in milliseconds or null to stop it
