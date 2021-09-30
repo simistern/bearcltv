@@ -269,6 +269,8 @@ async function fetchAccountData() {
           <div className='header-link' onClick={() => teamScroll()}>Team</div>
         </div>
       </div>
+      <h1 className='blood-font price-value' style={{textAlign: 'center' }}>Price: {0.04} E</h1>
+      {/* <h1 className='blood-font price-value' style={{textAlign: 'center', marginTop: 50 }}>Price: {0.04} E</h1> */}
         <div style={{marginTop: 125, marginLeft: '5%', marginRight: '5%'}}>
           <img src={'./red_bear.png'} className='first-bear-image-small' />
           {mintError ?
@@ -450,7 +452,7 @@ async function fetchAccountData() {
               <div className='bear-link'><a target="_blank" href='https://discord.com/invite/thebearcltv' style={{color: 'black'}}>@TheBearCLTV</a></div>
             </div>
             <div style={{marginLeft: '15%',textAlign: 'center', fontSize: 14, width: 175}} className='blood-font'>
-              2021 THE BEAR CLTV LLC <br/>
+              2021 THE BEAR CLTV <br/>
               <div style={{fontFamily: 'Fira Code', textTransform: 'uppercase'}}>www.thebearcltv.com</div>
             </div>
           </div>

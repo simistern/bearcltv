@@ -11,9 +11,13 @@
   margin-top: -130px;
 }
 
-.bottom-meet-team-container{
-  margin-bottom: 50px;
-}
+  .bottom-meet-team-container{
+    margin-bottom: 50px;
+  }
+
+  .price-value{
+    margin-bottom: -50px;
+  }
 
  .banner{ 
    display: flex;
@@ -664,6 +668,10 @@
     position: absolute;
     top: 120px;
     z-index: 0;
+  }
+
+  .price-value{
+    margin-top: -50px;
   }
   
   .slightly-longer-mid-paragraph{
