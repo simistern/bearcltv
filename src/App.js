@@ -47,6 +47,8 @@ const App = () => {
   const [mintError, setMintError] = useState(false);
   const [account, setAccount] = useState();
   const [price, setPrice] = useState(40000000000000000);
+  const [totalPurchased, setTotalPurchased] = useState(2000);
+  const [displayPrice, setDisplayPrice] = useState(0.04);
   const [purchaseAmount, setPurchaseAmount] = useState(1);
   const [walletIsConnected, setWalletIsConnected] = useState(false);
   const [maxPurchase, setMaxPurchase] = useState(20);
@@ -176,7 +178,13 @@ async function fetchAccountData() {
       let res = await contract.methods.NFT_PRICE().call();
       let tempMaxPurchase = await contract.methods.MAX_NFT_PURCHASE().call();
       console.log('NFT PRICE: ', res, tempMaxPurchase);
+      let newprice = web3.utils.fromWei(res);
+      // console.log('new price ', newprice);
+      setDisplayPrice(newprice);
       setPrice(res);
+      let tempTotalPurchased = await contract.methods.totalSupply().call();
+      console.log('check ', tempTotalPurchased);
+      setTotalPurchased(tempTotalPurchased);
       setMaxPurchase(parseInt(tempMaxPurchase));
       } catch (error) {
         console.log('no price? ', error)
@@ -269,10 +277,11 @@ async function fetchAccountData() {
           <div className='header-link' onClick={() => teamScroll()}>Team</div>
         </div>
       </div>
-      <h1 className='blood-font price-value' style={{textAlign: 'center' }}>Price: {0.04} E</h1>
+      <h1 className='blood-font price-value' style={{textAlign: 'center' }}>Price: {displayPrice} E</h1>
+      <h1 className='blood-font price-value' style={{textAlign: 'center', marginTop: 60 }}>Sold: {totalPurchased}/7777</h1>
       {/* <h1 className='blood-font price-value' style={{textAlign: 'center', marginTop: 50 }}>Price: {0.04} E</h1> */}
         <div style={{marginTop: 125, marginLeft: '5%', marginRight: '5%'}}>
-          <img src={'./red_bear.png'} className='first-bear-image-small' />
+          <img src={'./red_bear_min.png'} className='first-bear-image-small' />
           {mintError ?
               <div className='blood-font' style={{display: 'flex', justifyContent: 'center', fontSize: 28, marginBottom: 20}}>There was an error minting your bear. Please try again or contact a member of the team.</div>
             : null
@@ -291,7 +300,7 @@ async function fetchAccountData() {
             : <button className='coming-soon-button'>COMING SOON</button> }
           </div>
           <h1 className='bear-header blood-font'> THE BEAR CLTV.</h1>
-          <img src={'./red_bear.png'} className='first-bear-image' />
+          <img src={'./red_bear_min.png'} className='first-bear-image' />
           {/* <img src={'./splatter_2.png'} className='splash_splatter' /> */}
           <div className='bear-header-copy'>Exclusive </div>
           <p className='bear-header-copy'>Collectable NFT's that offer hybrid access to the TBC Hype brand + Much more. </p>
